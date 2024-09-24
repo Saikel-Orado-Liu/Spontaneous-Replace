@@ -27,23 +27,23 @@
 		}
 	},
 	"license": "MIT",
-	"icon": "resourcepacks/pack/assets/spontaneous-replace/icon.png",
+	"icon": "resourcepacks/resource/assets/spontaneous-replace/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"fabric-datagen": [
-			"pers.saikel0rado1iu.sr.gen.DataGeneration"
+			"pers.saikel0rado1iu.spontaneousreplace.data.DataGen"
 		],
 		"modmenu": [
-			"pers.saikel0rado1iu.sr.ModMenu"
+			"pers.saikel0rado1iu.spontaneousreplace.client.ModMenu"
 		],
 		"main": [
-			"pers.saikel0rado1iu.sr.Main"
+			"pers.saikel0rado1iu.spontaneousreplace.Main"
 		],
 		"client": [
-			"pers.saikel0rado1iu.sr.Client"
+			"pers.saikel0rado1iu.spontaneousreplace.client.Client"
 		],
 		"preLaunch": [
-			"pers.saikel0rado1iu.sr.PreLaunch"
+			"pers.saikel0rado1iu.spontaneousreplace.Launch"
 		]
 	},
 	"mixins": [
@@ -56,7 +56,7 @@
 	"depends": {
 		"java": ">=17",
 		"minecraft": ">=1.20.3",
-		"fabricloader": ">=0.15.6",
+		"fabricloader": ">=0.15.11",
 		"fabric-api": ">=0.91.1",
 		"silk-api": ">=1.20.4-0.2.1"
 	},

@@ -38,19 +38,6 @@ loom {
 			sourceSet sourceSets.client
 		}
 	}
-	
-	runs {
-		// 添加一个新的 gradle 任务，会运行数据生成 API：“gradlew runDatagenClient”
-		datagenClient {
-			inherit client
-			name "Data Generation"
-			vmArg "-Dfabric-api.datagen"
-			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated/resourcepacks/pack")}"
-			vmArg "-Dfabric-api.datagen.modid=${mod_id}"
-			
-			runDir "build/datagen"
-		}
-	}
 }
 
 sourceSets {
@@ -86,6 +73,12 @@ dependencies {
 	modImplementation fileTree(dir: 'libs', includes: ['*.jar'])
 }
 
+fabricApi {
+	configureDataGeneration {
+		modId = project.mod_id
+	}
+}
+
 processResources {
 	inputs.property "version", project.version
 	
@@ -97,6 +90,15 @@ processResources {
 tasks.withType(JavaCompile).configureEach {
 	// Minecraft 1.18 (1.18-pre2) 及以上使用 Java 17.
 	it.options.release = 17
+	// 使用 UTF-8 编码
+	options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc).configureEach {
+	options {
+		encoding = 'UTF-8'
+		charSet = 'UTF-8'
+	}
 }
 
 java {
@@ -104,6 +106,8 @@ java {
 	// 如果其存在.
 	// 如果删除此行，则不会生成源.
 	withSourcesJar()
+	// 生成文档
+	withJavadocJar()
 	
 	sourceCompatibility = JavaVersion.VERSION_17
 	targetCompatibility = JavaVersion.VERSION_17

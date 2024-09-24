@@ -1,0 +1,198 @@
+{
+	"copper.equip": {
+		"subtitle": "subtitles.spontaneous-replace.copper.equip",
+		"sounds": [
+			"spontaneous-replace:copper/equip_copper1",
+			"spontaneous-replace:copper/equip_copper2",
+			"spontaneous-replace:copper/equip_copper3",
+			"spontaneous-replace:copper/equip_copper4",
+			"spontaneous-replace:copper/equip_copper5",
+			"spontaneous-replace:copper/equip_copper6"
+		]
+	},
+	"cufe.equip": {
+		"subtitle": "subtitles.spontaneous-replace.cufe.equip",
+		"sounds": [
+			"spontaneous-replace:cufe/equip_cufe1",
+			"spontaneous-replace:cufe/equip_cufe2",
+			"spontaneous-replace:cufe/equip_cufe3",
+			"spontaneous-replace:cufe/equip_cufe4",
+			"spontaneous-replace:cufe/equip_cufe5",
+			"spontaneous-replace:cufe/equip_cufe6"
+		]
+	},
+	"aucu.equip": {
+		"subtitle": "subtitles.spontaneous-replace.aucu.equip",
+		"sounds": [
+			"spontaneous-replace:aucu/equip_aucu1",
+			"spontaneous-replace:aucu/equip_aucu2",
+			"spontaneous-replace:aucu/equip_aucu3",
+			"spontaneous-replace:aucu/equip_aucu4",
+			"spontaneous-replace:aucu/equip_aucu5",
+			"spontaneous-replace:aucu/equip_aucu6"
+		]
+	},
+	"steel.equip": {
+		"subtitle": "subtitles.spontaneous-replace.steel.equip",
+		"sounds": [
+			"spontaneous-replace:steel/equip_steel1",
+			"spontaneous-replace:steel/equip_steel2",
+			"spontaneous-replace:steel/equip_steel3",
+			"spontaneous-replace:steel/equip_steel4",
+			"spontaneous-replace:steel/equip_steel5",
+			"spontaneous-replace:steel/equip_steel6"
+		]
+	},
+	"stoneball.throw": {
+		"subtitle": "subtitles.spontaneous-replace.stoneball.throw",
+		"sounds": [
+			"spontaneous-replace:stoneball_throw"
+		]
+	},
+	"slingshot.throw": {
+		"subtitle": "subtitles.spontaneous-replace.slingshot.throw",
+		"sounds": [
+			"spontaneous-replace:slingshot_throw"
+		]
+	},
+	"arbalest.loading.start": {
+		"subtitle": "subtitles.spontaneous-replace.arbalest.loading.start",
+		"sounds": [
+			"spontaneous-replace:arbalest/loading_start"
+		]
+	},
+	"arbalest.loading.middle": {
+		"sounds": [
+			"spontaneous-replace:arbalest/loading_middle/1",
+			"spontaneous-replace:arbalest/loading_middle/2",
+			"spontaneous-replace:arbalest/loading_middle/3",
+			"spontaneous-replace:arbalest/loading_middle/4"
+		]
+	},
+	"arbalest.loading.end": {
+		"subtitle": "subtitles.spontaneous-replace.arbalest.loading.end",
+		"sounds": [
+			"spontaneous-replace:arbalest/loading_end"
+		]
+	},
+	"arbalest.shoot": {
+		"subtitle": "subtitles.spontaneous-replace.arbalest.shoot",
+		"sounds": [
+			"spontaneous-replace:arbalest/shoot/1",
+			"spontaneous-replace:arbalest/shoot/2",
+			"spontaneous-replace:arbalest/shoot/3"
+		]
+	},
+	"arbalest.quick_charge.1": {
+		"subtitle": "subtitles.spontaneous-replace.arbalest.loading.start",
+		"sounds": [
+			"spontaneous-replace:arbalest/quick_charge_1/1",
+			"spontaneous-replace:arbalest/quick_charge_1/2",
+			"spontaneous-replace:arbalest/quick_charge_1/3"
+		]
+	},
+	"arbalest.quick_charge.2": {
+		"subtitle": "subtitles.spontaneous-replace.arbalest.loading.start",
+		"sounds": [
+			"spontaneous-replace:arbalest/quick_charge_2/1",
+			"spontaneous-replace:arbalest/quick_charge_2/2",
+			"spontaneous-replace:arbalest/quick_charge_2/3"
+		]
+	},
+	"arbalest.quick_charge.3": {
+		"subtitle": "subtitles.spontaneous-replace.arbalest.loading.start",
+		"sounds": [
+			"spontaneous-replace:arbalest/quick_charge_3/1",
+			"spontaneous-replace:arbalest/quick_charge_3/2",
+			"spontaneous-replace:arbalest/quick_charge_3/3"
+		]
+	},
+	"juger_repeating_crossbow.loading.start": {
+		"subtitle": "subtitles.spontaneous-replace.juger_repeating_crossbow.loading.start",
+		"sounds": [
+			"spontaneous-replace:juger_repeating_crossbow/loading_start"
+		]
+	},
+	"juger_repeating_crossbow.loading.middle": {
+		"sounds": [
+			"spontaneous-replace:juger_repeating_crossbow/loading_middle"
+		]
+	},
+	"juger_repeating_crossbow.loading.end": {
+		"subtitle": "subtitles.spontaneous-replace.juger_repeating_crossbow.loading.end",
+		"sounds": [
+			"spontaneous-replace:juger_repeating_crossbow/loading_end"
+		]
+	},
+	"juger_repeating_crossbow.shoot": {
+		"subtitle": "subtitles.spontaneous-replace.juger_repeating_crossbow.shoot",
+		"sounds": [
+			"spontaneous-replace:juger_repeating_crossbow/shoot/1",
+			"spontaneous-replace:juger_repeating_crossbow/shoot/2",
+			"spontaneous-replace:juger_repeating_crossbow/shoot/3"
+		]
+	},
+	"marks_crossbow.loading.start": {
+		"subtitle": "subtitles.spontaneous-replace.marks_crossbow.loading.start",
+		"sounds": [
+			"spontaneous-replace:marks_crossbow/loading_start"
+		]
+	},
+	"marks_crossbow.loading.middle": {
+		"sounds": [
+			"spontaneous-replace:marks_crossbow/loading_middle/1",
+			"spontaneous-replace:marks_crossbow/loading_middle/2",
+			"spontaneous-replace:marks_crossbow/loading_middle/3",
+			"spontaneous-replace:marks_crossbow/loading_middle/4"
+		]
+	},
+	"marks_crossbow.loading.end": {
+		"subtitle": "subtitles.spontaneous-replace.marks_crossbow.loading.end",
+		"sounds": [
+			"spontaneous-replace:marks_crossbow/loading_end"
+		]
+	},
+	"marks_crossbow.shoot": {
+		"subtitle": "subtitles.spontaneous-replace.marks_crossbow.shoot",
+		"sounds": [
+			"spontaneous-replace:marks_crossbow/shoot/1",
+			"spontaneous-replace:marks_crossbow/shoot/2",
+			"spontaneous-replace:marks_crossbow/shoot/3"
+		]
+	},
+	"marks_crossbow.quick_charge.1": {
+		"subtitle": "subtitles.spontaneous-replace.marks_crossbow.loading.start",
+		"sounds": [
+			"spontaneous-replace:marks_crossbow/quick_charge_1/1",
+			"spontaneous-replace:marks_crossbow/quick_charge_1/2",
+			"spontaneous-replace:marks_crossbow/quick_charge_1/3"
+		]
+	},
+	"marks_crossbow.quick_charge.2": {
+		"subtitle": "subtitles.spontaneous-replace.marks_crossbow.loading.start",
+		"sounds": [
+			"spontaneous-replace:marks_crossbow/quick_charge_2/1",
+			"spontaneous-replace:marks_crossbow/quick_charge_2/2",
+			"spontaneous-replace:marks_crossbow/quick_charge_2/3"
+		]
+	},
+	"marks_crossbow.quick_charge.3": {
+		"subtitle": "subtitles.spontaneous-replace.marks_crossbow.loading.start",
+		"sounds": [
+			"spontaneous-replace:marks_crossbow/quick_charge_3/1",
+			"spontaneous-replace:marks_crossbow/quick_charge_3/2",
+			"spontaneous-replace:marks_crossbow/quick_charge_3/3"
+		]
+	},
+	"arrowproof.equip": {
+		"subtitle": "subtitles.spontaneous-replace.arrowproof.equip",
+		"sounds": [
+			"spontaneous-replace:arrowproof/equip_1",
+			"spontaneous-replace:arrowproof/equip_2",
+			"spontaneous-replace:arrowproof/equip_3",
+			"spontaneous-replace:arrowproof/equip_4",
+			"spontaneous-replace:arrowproof/equip_5",
+			"spontaneous-replace:arrowproof/equip_6"
+		]
+	}
+}
