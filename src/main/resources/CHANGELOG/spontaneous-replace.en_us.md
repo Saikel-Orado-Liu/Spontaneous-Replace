@@ -2,8 +2,8 @@
 
 ### Update:
 
-- 'Dense Silk' can now be crafted.
-- 'Sticky Silk' can now be crafted.
+- 'Compact Gossamer' can now be crafted.
+- 'Sticky Compact Gossamer' can now be crafted.
 
 ### Change:
 
@@ -13,9 +13,9 @@
     - Redesigned the loading mechanism for the 'Multishot' enchantment of the 'Zhuge Repeating Crossbow'.
     - Adjusted the arrangement of items in the item group.
 - Client
-    - Modified the texture of 'Dense Silk'.
-    - Modified the texture of 'Sticky Silk'.
-    - Modified the texture of 'Dense Thread'.
+    - Modified the texture of 'Compact Gossamer'.
+    - Modified the texture of 'Sticky Compact Gossamer'.
+    - Modified the texture of 'Compact String'.
 
 ### Fixes:
 
