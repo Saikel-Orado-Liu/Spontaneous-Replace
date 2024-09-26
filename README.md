@@ -1,5 +1,9 @@
 <!--suppress HtmlDeprecatedAttribute -->
-<h1 align = "center">自然更替 | Spontaneous-Replace</h1>
+<div align="center">
+
+# Spontaneous-Replace
+
+</div>
 
 **If you would like to support the SR, please consider contributing to our [Patreon](https://www.patreon.com/GameGeek_Saikel)
 or [爱发电](https://afdian.net/a/GameGeek_Saikel)!**
@@ -9,5 +13,5 @@ A repository of all open source versions of Spontaneous-Replace. For learning an
 
 # Localized homepage
 
-- en_us : [English (US)](readme/README.en_us.md)
-- zh_cn : [简体中文（中国大陆）](readme/README.zh_cn.md)
+- en_us : [English (US)](README/README.en_us.md)
+- zh_cn : [简体中文（中国大陆）](README/README.zh_cn.md)
