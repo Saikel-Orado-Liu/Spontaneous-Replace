@@ -3,7 +3,7 @@
 
 # A One-Of-A-Kind Minecraft Adventure Journey
 
-[![YouTube Video](https://img.youtube.com/vi/SpDuqRVBmPI/0.jpg)](https://www.youtube.com/watch?v=SpDuqRVBmPI)
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/SpDuqRVBmPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 **🌍 [English](README/README.en_us.md) • [简体中文](README/README.zh_cn.md)**
 
