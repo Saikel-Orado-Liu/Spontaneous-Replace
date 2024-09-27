@@ -3,7 +3,7 @@
 
 # 独一无二的 Minecraft 冒险旅程
 
-<iframe align = "center" src="//player.bilibili.com/player.html?isOutside=true&aid=267880117&bvid=BV1JY411k7Wq&cid=1037607343&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+[![YouTube Video](/img/RenderMap.png)](https://www.bilibili.com/video/BV1JY411k7Wq)
 
 #### 「自然更替」在 Minecraft 原版的基础上添加了一整套合金装备与弓弩变种，全新的生物变种和独特的机制。旨在为玩家带来更好的 Minecraft 游玩体验。
 
