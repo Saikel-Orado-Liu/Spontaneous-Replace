@@ -1,46 +1,63 @@
 <!--suppress HtmlDeprecatedAttribute -->
-<h1 align = "center">A Brand New Adventure Expanded On Minecraft</h1>
+<div align = "center">
 
-**<p align = "center">[![YouTube Video](https://img.youtube.com/vi/SpDuqRVBmPI/0.jpg)](https://www.youtube.com/watch?v=SpDuqRVBmPI)</p>**
+# A One-Of-A-Kind Minecraft Adventure Journey
 
-#### Spontaneous-Replace adds a full set of alloy equipments,special bow and crossbow, new mob variants and unique features to the Minecraft vanilla. Designed to bring players a better Minecraft playing experience.
+[![YouTube Video](https://img.youtube.com/vi/SpDuqRVBmPI/0.jpg)](https://www.youtube.com/watch?v=SpDuqRVBmPI)
 
-**<p align = "center">💥If you would like to support the Spontaneous-Replace💥</p>**
+**🌍 English • [简体中文](README.zh_cn.md)**
 
-**<p align = "center">💥Please consider contributing to our [Patreon](https://www.patreon.com/GameGeek_Saikel) or [爱发电](https://afdian.net/a/GameGeek_Saikel)!
-💥</p>**
+#### Spontaneous-Replace adds a full set of alloy equipments, special bow and crossbow, new mob variants and unique features to the Minecraft vanilla. Designed to bring players a better Minecraft playing experience.
+
+</div>
+![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
+
+<div align = "center">
+
+## ✦Alloy System And Bow& Crossbow Expansion✦
+
+![Alloy and bow](/img/AlloyAndBow.gif)
+
+</div>
+
+> The alloy system is expanded from copper and smithing table, filling in more options for vanilla equipment and adding more metal materials. These
+> materials and special strings can be craft into more distinctive bows and crossbows. For example, the Zhuge Repeating Crossbow and the marks-crossbow,
+> showcasing their great power!
 
 ![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
 
-<h2 align = "center">✦Brand New Alloy System And Bow& Crossbow Expansion✦</h2>
+<div align = "center">
 
-![Alloy and bow](https://github.com/Saikel-Orado-Liu/Spontaneous-Replace/blob/1.20.2/img/Alloy%20and%20bow.gif?raw=true)
+## ✦Advancement System✦
 
-> The new alloy system is expanded from copper and smithing table, filling in more options for vanilla equipment and adding more metal materials. These
-> materials and special strings can be craft into more distinctive bows and crossbows. For example, the Ju-ger repeating crossbow and marks-crossbow from China
-> can bring you a unique gaming experience!
+![Advancement](/img/Advancement.gif)
 
-![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
+</div>
 
-<h2 align = "center">✦Brand New Spider Biome Expansion✦</h2>
-
-![Spider biome](https://github.com/Saikel-Orado-Liu/Spontaneous-Replace/blob/1.20.2/img/Spider%20biome.gif?raw=true)
-
-> The new spider biome aims to create a spider kingdom made entirely of spiders. Players can explore this wonderful world filled with cobwebs, cocoons, and
-> arthropods. Obtain the materials needed to craft advanced equipment, or find treasures left by others...
+> The progress system of *Spontaneous-Replace* has achieved its goal: to guide players through the mod content step by step. Yes, you don’t have to worry about
+> feeling lost while playing this mod; the carefully designed progress serves as a guide, leading you through the experience gradually.
 
 ![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
 
-<h2 align = "center">✦Brand New Advancement System✦</h2>
+<div align = "center">
 
-![Advancement](https://github.com/Saikel-Orado-Liu/Spontaneous-Replace/blob/1.20.2/img/Advancement.gif?raw=true)
+## ✦Scalability✦
 
-> The new achievement system completes her best missions: guide players step by step through the mod content. Yes, you don’t have to worry about playing this
-> Mod on the wrong path, our advancement is like a guide guiding you to play this Mod step by step. Moreover, some challenging achievements and various
-> interesting game memes will be provided during the game to make the journey more interesting.
+![Scalability](/img/Scalability.gif)
 
-**<p align = "center">💥Head over to [modrinth](https://modrinth.com/mod/spontaneous-replace) to download the mod or
-join [our discord community](https://discord.com/invite/ChRbMFgVw3)💥</p>**
+</div>
+
+> With the power of the *[Silk API](https://github.com/Silk-MC/Silk-API)*, this mod can have countless expansion mods. Different expansion mods can be added or
+> modified based on the author's ideas, which is the charm of *Spontaneous-Replace*.
+
+<div align = "center">
+
+**💥If you would like to support the Spontaneous-Replace💥**<br>
+**💥Please consider contributing to our [Patreon](https://www.patreon.com/GameGeek_Saikel) or [爱发电](https://afdian.net/a/GameGeek_Saikel)!💥**<br>
+**💥Head over to [modrinth](https://modrinth.com/mod/spontaneous-replace) to download the mod or
+join [our discord community](https://discord.com/invite/ChRbMFgVw3)💥**
+
+</div>
 
 ![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
 
@@ -52,6 +69,5 @@ join [our discord community](https://discord.com/invite/ChRbMFgVw3)💥</p>**
 
 ### Mod Author：
 
-- This mod is not allowed in your mod at all, but this mod is open source on [GitHub](https://github.com/Saikel-Orado-Liu/Spontaneous-Replace), and you can use
-  the code according to the license without asking me. But
-  you can make your own extension based on this mod, I fully support it.
+- This mod is completely prohibited from appearing in your mod. This mod is open-source on [GitHub](https://github.com/Saikel-Orado-Liu/Spontaneous-Replace),
+  and you can use the code according to the license without asking me. I fully support creating expansion mods for this mod.
