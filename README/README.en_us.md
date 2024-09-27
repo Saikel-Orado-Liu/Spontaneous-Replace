@@ -10,7 +10,8 @@
 #### Spontaneous-Replace adds a full set of alloy equipments, special bow and crossbow, new mob variants and unique features to the Minecraft vanilla. Designed to bring players a better Minecraft playing experience.
 
 </div>
-![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
+
+![Line](/img/Line.png)
 
 <div align = "center">
 
@@ -24,7 +25,7 @@
 > materials and special strings can be craft into more distinctive bows and crossbows. For example, the Zhuge Repeating Crossbow and the marks-crossbow,
 > showcasing their great power!
 
-![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
+![Line](/img/Line.png)
 
 <div align = "center">
 
@@ -37,7 +38,7 @@
 > The progress system of *Spontaneous-Replace* has achieved its goal: to guide players through the mod content step by step. Yes, you don’t have to worry about
 > feeling lost while playing this mod; the carefully designed progress serves as a guide, leading you through the experience gradually.
 
-![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
+![Line](/img/Line.png)
 
 <div align = "center">
 
@@ -59,7 +60,7 @@ join [our discord community](https://discord.com/invite/ChRbMFgVw3)💥**
 
 </div>
 
-![Line](https://raw.githubusercontent.com/Saikel-Orado-Liu/Spontaneous-Replace/1.20.2/img/Line.png)
+![Line](/img/Line.png)
 
 <h2 align = "center">✦Note To Other Authors✦</h2>
 
