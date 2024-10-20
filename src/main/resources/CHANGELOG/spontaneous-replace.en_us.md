@@ -1,3 +1,9 @@
+## 1.20.4-1.0.0+bu——2024/10/20
+
+### Change:
+
+- Updated the version number naming convention.
+
 ## 1.20.4-1.0.0+bu——2024/09/25
 
 ### Update:
@@ -8,14 +14,14 @@
 ### Change:
 
 - Logic
-    - Separated spider-related content and world upgrader content into individual sub-mods.
-    - The item identifier for 'Zhuge Repeating Crossbow' has been changed to replace:zhuge_repeating_crossbow.
-    - Redesigned the loading mechanism for the 'Multishot' enchantment of the 'Zhuge Repeating Crossbow'.
-    - Adjusted the arrangement of items in the item group.
+	- Separated spider-related content and world upgrader content into individual sub-mods.
+	- The item identifier for 'Zhuge Repeating Crossbow' has been changed to replace:zhuge_repeating_crossbow.
+	- Redesigned the loading mechanism for the 'Multishot' enchantment of the 'Zhuge Repeating Crossbow'.
+	- Adjusted the arrangement of items in the item group.
 - Client
-    - Modified the texture of 'Compact Gossamer'.
-    - Modified the texture of 'Sticky Compact Gossamer'.
-    - Modified the texture of 'Compact String'.
+	- Modified the texture of 'Compact Gossamer'.
+	- Modified the texture of 'Sticky Compact Gossamer'.
+	- Modified the texture of 'Compact String'.
 
 ### Fixes:
 
@@ -58,25 +64,25 @@
 ### Change:
 
 - Logic
-    - Changed the entity contact judgment of 'gossamery leaves'. Now entities touching the sides will also have a
-      deceleration effect.
-    - Changed the id of 'Block of CuFe Alloy', now it is spontaneous-replace:cufe_block.
-    - Changed the id of 'Block of AuCu Alloy', now it is spontaneous-replace:cufe_block.
+	- Changed the entity contact judgment of 'gossamery leaves'. Now entities touching the sides will also have a
+	  deceleration effect.
+	- Changed the id of 'Block of CuFe Alloy', now it is spontaneous-replace:cufe_block.
+	- Changed the id of 'Block of AuCu Alloy', now it is spontaneous-replace:cufe_block.
 
 ### Fixes:
 
 - Logic
-    - Fixed the triggering condition of 'Alloycraft' advancements. Obtaining 'Refined Copper Ingot' will not trigger
-      this advancements now.
+	- Fixed the triggering condition of 'Alloycraft' advancements. Obtaining 'Refined Copper Ingot' will not trigger
+	  this advancements now.
 - Client
-    - Fixed tool third-person model display issue.
+	- Fixed tool third-person model display issue.
 
 ## 1.20.4-0.5.3+bf 2023/12/09
 
 ### Bug Fixes
 
 - Client
-    - Fixed an issue where mod log reading was overwritten by silk api logs.
+	- Fixed an issue where mod log reading was overwritten by silk api logs.
 
 v1.20.4-0.5.2+bp 2023/12/08
 
