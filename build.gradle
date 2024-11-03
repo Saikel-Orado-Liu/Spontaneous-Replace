@@ -1,12 +1,12 @@
-//file:noinspection GroovyAccessibility
 //file:noinspection GroovyAssignabilityCheck
-//file:noinspection UnnecessaryQualifiedReference
+import groovy.json.JsonSlurper
+
 plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
+	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
-version = project.mod_version + "+" + project.mod_ex_version+ "+" + project.mc_main_version
+version = project.mod_version + "+" + project.mod_ex_version + "+" + project.mc_main_version
 group = project.maven_group
 
 base {
@@ -89,8 +89,8 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) 及以上使用 Java 17.
-	it.options.release = 17
+	// Minecraft 1.20.5 及以上使用 Java 21.
+	it.options.release = 21
 	// 使用 UTF-8 编码
 	options.encoding = 'UTF-8'
 }
@@ -110,8 +110,8 @@ java {
 	// 生成文档
 	withJavadocJar()
 	
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
@@ -127,7 +127,7 @@ tasks.register('deleteRemoteArtifact', Delete) {
 		def headers = ['Authorization': "token ${System.getenv("GITHUB_TOKEN")}"]
 		
 		def versionsResponse
-		def connection = new URL(versionsUrl).openConnection() as HttpURLConnection
+		def connection = new URI(versionsUrl).toURL().openConnection() as HttpURLConnection
 		headers.each { k, v -> connection.setRequestProperty(k, v) }
 		
 		if (connection.responseCode == 200) {
@@ -138,7 +138,7 @@ tasks.register('deleteRemoteArtifact', Delete) {
 		}
 		
 		// 解析 JSON 响应以获取版本列表
-		def versions = new groovy.json.JsonSlurper().parseText versionsResponse
+		def versions = new JsonSlurper().parseText versionsResponse
 		
 		// 遍历版本列表并执行删除操作
 		versions.each { ver ->
@@ -149,7 +149,7 @@ tasks.register('deleteRemoteArtifact', Delete) {
 			
 			// 执行删除操作
 			def deleteUrl = "https://api.github.com/users/${project.organizations_name}/packages/maven/${project.maven_group}.${archivesBaseName}/versions/${versionId}"
-			def deleteResponse = new URL(deleteUrl).openConnection()
+			def deleteResponse = new URI(deleteUrl).toURL().openConnection()
 					.with {
 						requestMethod = 'DELETE'
 						headers.each { k, v -> setRequestProperty(k, v) }
