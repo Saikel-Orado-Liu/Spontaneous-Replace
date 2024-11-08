@@ -24,17 +24,10 @@
 
 package pers.saikel0rado1iu.spontaneousreplace.entity;
 
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
-import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Position;
-import net.minecraft.world.World;
 import pers.saikel0rado1iu.silk.api.spinningjenny.EntityTypeRegistry;
 import pers.saikel0rado1iu.silk.api.spore.EntityUtil;
 import pers.saikel0rado1iu.spontaneousreplace.entity.projectile.SteelArrowEntity;
@@ -50,22 +43,12 @@ import pers.saikel0rado1iu.spontaneousreplace.item.Items;
  * @since 1.0.0
  */
 public interface EntityTypes extends EntityTypeRegistry {
-	EntityType<StoneballEntity> STONEBALL = EntityTypeRegistry.registrar(() -> FabricEntityTypeBuilder.<StoneballEntity>create(SpawnGroup.MISC, StoneballEntity::new)
-					.dimensions(EntityDimensions.fixed(EntityUtil.PROJECTILE_BOX, EntityUtil.PROJECTILE_BOX)).trackRangeBlocks(EntityUtil.PROJECTILE_RANGE).trackedUpdateRate(EntityUtil.PROJECTILE_UPDATE_RATE).build())
-			.other(entityType -> DispenserBlock.registerBehavior(Items.STONEBALL, new ProjectileDispenserBehavior() {
-				@Override
-				protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
-					return new StoneballEntity(world, position.getX(), position.getY(), position.getZ());
-				}
-			})).register("stoneball");
-	EntityType<SteelArrowEntity> STEEL_ARROW = EntityTypeRegistry.registrar(() -> FabricEntityTypeBuilder.<SteelArrowEntity>create(SpawnGroup.MISC, SteelArrowEntity::new)
-					.dimensions(EntityDimensions.fixed(EntityUtil.PROJECTILE_BOX * 1.25F, EntityUtil.PROJECTILE_BOX * 1.25F)).trackRangeBlocks(EntityUtil.PROJECTILE_RANGE * 10).trackedUpdateRate(EntityUtil.PROJECTILE_UPDATE_RATE).build())
-			.other(entityType -> DispenserBlock.registerBehavior(Items.STEEL_ARROW, new ProjectileDispenserBehavior() {
-				@Override
-				protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
-					SteelArrowEntity arrowEntity = new SteelArrowEntity(world, position.getX(), position.getY(), position.getZ(), stack);
-					arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
-					return arrowEntity;
-				}
-			})).register("steel_arrow");
+	EntityType<StoneballEntity> STONEBALL = EntityTypeRegistry.registrar(() -> EntityType.Builder.<StoneballEntity>create((StoneballEntity::new), SpawnGroup.MISC)
+					.dimensions(EntityUtil.PROJECTILE_BOX, EntityUtil.PROJECTILE_BOX).maxTrackingRange(EntityUtil.PROJECTILE_RANGE).build())
+			// .other(entityType -> DispenserBlock.registerBehavior(Items.STONEBALL, new ProjectileDispenserBehavior(Items.STONEBALL)))
+			.register("stoneball");
+	EntityType<SteelArrowEntity> STEEL_ARROW = EntityTypeRegistry.registrar(() -> EntityType.Builder.<SteelArrowEntity>create(SteelArrowEntity::new, SpawnGroup.MISC)
+					.dimensions(EntityUtil.PROJECTILE_BOX * 1.25F, EntityUtil.PROJECTILE_BOX * 1.25F).maxTrackingRange(EntityUtil.PROJECTILE_RANGE * 10).build())
+			.other(entityType -> DispenserBlock.registerBehavior(Items.STEEL_ARROW, new ProjectileDispenserBehavior(Items.STEEL_ARROW)))
+			.register("steel_arrow");
 }

@@ -25,9 +25,11 @@
 package pers.saikel0rado1iu.spontaneousreplace.item;
 
 import com.google.common.base.Suppliers;
+import net.minecraft.block.Block;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
-import pers.saikel0rado1iu.silk.api.ropestick.tool.Tool;
+import net.minecraft.registry.tag.TagKey;
+import pers.saikel0rado1iu.silk.api.ropestick.tool.ToolHelper;
 
 import java.util.function.Supplier;
 
@@ -40,37 +42,37 @@ import static net.minecraft.item.ToolMaterials.*;
  * @author <a href="https://github.com/Saikel-Orado-Liu"><img alt="author" src="https://avatars.githubusercontent.com/u/88531138?s=64&v=4"></a>
  * @since 1.0.0
  */
-public enum ToolMaterials implements Tool {
+public enum ToolMaterials implements ToolHelper {
 	/**
 	 * 精铜工具<br>
 	 * 基础属性在石制工具与铁制工具之间，但是拥有只比金低地附魔等级
 	 */
-	REFINED_COPPER(STONE.getMiningLevel(), (STONE.getDurability() + IRON.getDurability()) / 2, (STONE.getMiningSpeedMultiplier() + IRON.getMiningSpeedMultiplier()) / 2, 1, GOLD.getEnchantability() - 5, () -> Ingredient.ofItems(Items.REFINED_COPPER_INGOT)),
+	REFINED_COPPER(STONE.getInverseTag(), (STONE.getDurability() + IRON.getDurability()) / 2, (STONE.getMiningSpeedMultiplier() + IRON.getMiningSpeedMultiplier()) / 2, 1, GOLD.getEnchantability() - 5, () -> Ingredient.ofItems(Items.REFINED_COPPER_INGOT)),
 	/**
 	 * 铜铁工具<br>
 	 * 基础属性只比铁制工具略高，但是拥有精铜工具的附魔等级
 	 */
-	CUFE(IRON.getMiningLevel(), IRON.getDurability() * 2, IRON.getMiningSpeedMultiplier(), 2, REFINED_COPPER.getEnchantability(), () -> Ingredient.ofItems(Items.CUFE_ALLOY_INGOT)),
+	CUFE(IRON.getInverseTag(), IRON.getDurability() * 2, IRON.getMiningSpeedMultiplier(), 2, REFINED_COPPER.getEnchantability(), () -> Ingredient.ofItems(Items.CUFE_ALLOY_INGOT)),
 	/**
 	 * 金铜工具<br>
 	 * 基础属性在石制工具左右，但是拥有极致的附魔等级，附魔等级甚至比金高
 	 */
-	AUCU(STONE.getMiningLevel(), STONE.getDurability(), GOLD.getMiningSpeedMultiplier(), STONE.getAttackDamage(), GOLD.getEnchantability() + 5, () -> Ingredient.ofItems(Items.AUCU_ALLOY_INGOT)),
+	AUCU(STONE.getInverseTag(), STONE.getDurability(), GOLD.getMiningSpeedMultiplier(), STONE.getAttackDamage(), GOLD.getEnchantability() + 5, () -> Ingredient.ofItems(Items.AUCU_ALLOY_INGOT)),
 	/**
 	 * 钢制工具<br>
 	 * 基础属性只比钻石工具略低，但挖掘等级还是铁，但是拥有铁质工具的附魔等级
 	 */
-	STEEL(IRON.getMiningLevel(), DIAMOND.getDurability() - CUFE.getDurability(), (IRON.getMiningSpeedMultiplier() + DIAMOND.getMiningSpeedMultiplier()) / 2, DIAMOND.getAttackDamage(), IRON.getEnchantability(), () -> Ingredient.ofItems(Items.STEEL_INGOT));
+	STEEL(IRON.getInverseTag(), DIAMOND.getDurability() - CUFE.getDurability(), (IRON.getMiningSpeedMultiplier() + DIAMOND.getMiningSpeedMultiplier()) / 2, DIAMOND.getAttackDamage(), IRON.getEnchantability(), () -> Ingredient.ofItems(Items.STEEL_INGOT));
 	
-	private final int miningLevel;
+	private final TagKey<Block> inverseTag;
 	private final int durability;
 	private final float miningSpeed;
 	private final float materialDamage;
 	private final int enchantability;
 	private final Supplier<Ingredient> ingredient;
 	
-	ToolMaterials(int miningLevel, int durability, float miningSpeed, float materialDamage, int enchantability, Supplier<Ingredient> ingredient) {
-		this.miningLevel = miningLevel;
+	ToolMaterials(TagKey<Block> inverseTag, int durability, float miningSpeed, float materialDamage, int enchantability, Supplier<Ingredient> ingredient) {
+		this.inverseTag = inverseTag;
 		this.durability = durability;
 		this.miningSpeed = miningSpeed;
 		this.materialDamage = materialDamage;
@@ -99,8 +101,8 @@ public enum ToolMaterials implements Tool {
 	}
 	
 	@Override
-	public int getMiningLevel() {
-		return miningLevel;
+	public TagKey<Block> getInverseTag() {
+		return inverseTag;
 	}
 	
 	@Override

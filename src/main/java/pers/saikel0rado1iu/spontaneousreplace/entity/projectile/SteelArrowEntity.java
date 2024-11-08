@@ -45,21 +45,22 @@ public class SteelArrowEntity extends PersistentProjectileEntity implements Fixe
 	private static final ItemStack DEFAULT_STACK = new ItemStack(Items.STEEL_ARROW);
 	
 	public SteelArrowEntity(EntityType<? extends SteelArrowEntity> entityType, World world) {
-		super(entityType, world, DEFAULT_STACK);
+		super(entityType, world);
 	}
 	
 	public SteelArrowEntity(World world, LivingEntity owner, ItemStack stack) {
 		super(EntityTypes.STEEL_ARROW, owner, world, stack);
 	}
 	
-	public SteelArrowEntity(World world, double x, double y, double z, ItemStack stack) {
-		super(EntityTypes.STEEL_ARROW, x, y, z, world, stack);
-	}
-	
 	@Override
 	public void tick() {
 		if (getWorld().isClient && !inGround) getWorld().addParticle(ParticleTypes.INSTANT_EFFECT, getX(), getY(), getZ(), 0, 0, 0);
 		super.tick();
+	}
+	
+	@Override
+	protected ItemStack getDefaultItemStack() {
+		return DEFAULT_STACK;
 	}
 	
 	/**

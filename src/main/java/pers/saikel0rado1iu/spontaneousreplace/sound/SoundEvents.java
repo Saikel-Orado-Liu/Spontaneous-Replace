@@ -24,6 +24,7 @@
 
 package pers.saikel0rado1iu.spontaneousreplace.sound;
 
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import pers.saikel0rado1iu.silk.api.spinningjenny.SoundEventRegistry;
 import pers.saikel0rado1iu.spontaneousreplace.SpontaneousReplace;
@@ -36,13 +37,13 @@ import pers.saikel0rado1iu.spontaneousreplace.SpontaneousReplace;
  * @since 1.0.0
  */
 public interface SoundEvents extends SoundEventRegistry {
-	SoundEvent EQUIP_REFINED_COPPER = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("copper.equip"))).register();
-	SoundEvent EQUIP_CUFE_ALLOY = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("cufe.equip"))).register();
-	SoundEvent EQUIP_AUCU_ALLOY = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("aucu.equip"))).register();
-	SoundEvent EQUIP_STEEL = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("steel.equip"))).register();
+	RegistryEntry<SoundEvent> EQUIP_REFINED_COPPER = RegistryEntry.of(SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("copper.equip"))).register());
+	RegistryEntry<SoundEvent> EQUIP_CUFE_ALLOY = RegistryEntry.of(SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("cufe.equip"))).register());
+	RegistryEntry<SoundEvent> EQUIP_AUCU_ALLOY = RegistryEntry.of(SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("aucu.equip"))).register());
+	RegistryEntry<SoundEvent> EQUIP_STEEL = RegistryEntry.of(SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("steel.equip"))).register());
 	SoundEvent STONEBALL_THROW = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("stoneball.throw"))).register();
 	SoundEvent SLINGSHOT_THROW = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("slingshot.throw"))).register();
-	SoundEvent EQUIP_ARROWPROOF = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("arrowproof.equip"))).register();
+	RegistryEntry<SoundEvent> EQUIP_ARROWPROOF = RegistryEntry.of(SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("arrowproof.equip"))).register());
 	SoundEvent ARBALEST_LOADING_START = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("arbalest.loading.start"))).register();
 	SoundEvent ARBALEST_LOADING_MIDDLE = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("arbalest.loading.middle"))).register();
 	SoundEvent ARBALEST_LOADING_END = SoundEventRegistry.registrar(() -> SoundEvent.of(SpontaneousReplace.INSTANCE.ofId("arbalest.loading.end"))).register();

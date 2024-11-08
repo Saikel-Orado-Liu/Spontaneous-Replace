@@ -24,7 +24,6 @@
 
 package pers.saikel0rado1iu.spontaneousreplace.block;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.sound.BlockSoundGroup;
 import pers.saikel0rado1iu.silk.api.spinningjenny.BlockRegistry;
@@ -37,12 +36,12 @@ import pers.saikel0rado1iu.silk.api.spinningjenny.BlockRegistry;
  * @since 1.0.0
  */
 public interface Blocks extends BlockRegistry {
-	Block COPPER_FOR_SMELTING_INGOT_BLOCK = BlockRegistry.registrar(() -> new Block(FabricBlockSettings.copyOf(net.minecraft.block.Blocks.RAW_COPPER_BLOCK))).register("copper_for_smelting_ingot_block");
-	Block REFINED_COPPER_BLOCK = BlockRegistry.registrar(() -> new Block(FabricBlockSettings.copyOf(net.minecraft.block.Blocks.COPPER_BLOCK))).register("refined_copper_block");
-	Block CUFE_ALLOY_BLOCK = BlockRegistry.registrar(() -> new Block(FabricBlockSettings.copyOf(net.minecraft.block.Blocks.RAW_IRON_BLOCK))).register("cufe_alloy_block");
-	Block CUFE_BLOCK = BlockRegistry.registrar(() -> new Block(FabricBlockSettings.copyOf(net.minecraft.block.Blocks.IRON_BLOCK))).register("cufe_block");
-	Block AUCU_ALLOY_BLOCK = BlockRegistry.registrar(() -> new Block(FabricBlockSettings.copyOf(net.minecraft.block.Blocks.RAW_GOLD_BLOCK))).register("aucu_alloy_block");
-	Block AUCU_BLOCK = BlockRegistry.registrar(() -> new Block(FabricBlockSettings.copyOf(net.minecraft.block.Blocks.GOLD_BLOCK))).register("aucu_block");
-	Block PIG_IRON_BLOCK = BlockRegistry.registrar(() -> new Block(FabricBlockSettings.copyOf(net.minecraft.block.Blocks.IRON_BLOCK))).register("pig_iron_block");
-	Block STEEL_BLOCK = BlockRegistry.registrar(() -> new Block(FabricBlockSettings.copyOf(net.minecraft.block.Blocks.DIAMOND_BLOCK).sounds(BlockSoundGroup.METAL))).register("steel_block");
+	Block COPPER_FOR_SMELTING_INGOT_BLOCK = BlockRegistry.registrar(() -> new Block(Block.Settings.copy(net.minecraft.block.Blocks.RAW_COPPER_BLOCK))).register("copper_for_smelting_ingot_block");
+	Block REFINED_COPPER_BLOCK = BlockRegistry.registrar(() -> new Block(Block.Settings.copy(net.minecraft.block.Blocks.COPPER_BLOCK))).register("refined_copper_block");
+	Block CUFE_ALLOY_BLOCK = BlockRegistry.registrar(() -> new Block(Block.Settings.copy(net.minecraft.block.Blocks.RAW_IRON_BLOCK))).register("cufe_alloy_block");
+	Block CUFE_BLOCK = BlockRegistry.registrar(() -> new Block(Block.Settings.copy(net.minecraft.block.Blocks.IRON_BLOCK))).register("cufe_block");
+	Block AUCU_ALLOY_BLOCK = BlockRegistry.registrar(() -> new Block(Block.Settings.copy(net.minecraft.block.Blocks.RAW_GOLD_BLOCK))).register("aucu_alloy_block");
+	Block AUCU_BLOCK = BlockRegistry.registrar(() -> new Block(Block.Settings.copy(net.minecraft.block.Blocks.GOLD_BLOCK))).register("aucu_block");
+	Block PIG_IRON_BLOCK = BlockRegistry.registrar(() -> new Block(Block.Settings.copy(net.minecraft.block.Blocks.IRON_BLOCK))).register("pig_iron_block");
+	Block STEEL_BLOCK = BlockRegistry.registrar(() -> new Block(Block.Settings.copy(net.minecraft.block.Blocks.DIAMOND_BLOCK).sounds(BlockSoundGroup.METAL))).register("steel_block");
 }

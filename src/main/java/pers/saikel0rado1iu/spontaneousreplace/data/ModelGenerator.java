@@ -38,15 +38,14 @@ import pers.saikel0rado1iu.silk.api.generate.data.ModelGenUtil;
 import pers.saikel0rado1iu.silk.api.generate.data.client.ExtendedBlockStateModelGenerator;
 import pers.saikel0rado1iu.silk.api.generate.data.client.ExtendedItemModelGenerator;
 import pers.saikel0rado1iu.silk.api.generate.data.client.TextureKeys;
-import pers.saikel0rado1iu.silk.api.ropestick.ranged.Bow;
-import pers.saikel0rado1iu.silk.api.ropestick.ranged.Crossbow;
-import pers.saikel0rado1iu.silk.api.ropestick.ranged.ShootExpansion;
+import pers.saikel0rado1iu.silk.api.ropestick.component.type.RangedWeaponComponent;
+import pers.saikel0rado1iu.silk.api.ropestick.component.type.ShootProjectilesComponent;
 import pers.saikel0rado1iu.silk.impl.SilkApi;
 import pers.saikel0rado1iu.spontaneousreplace.block.Blocks;
 import pers.saikel0rado1iu.spontaneousreplace.item.ItemGroups;
 import pers.saikel0rado1iu.spontaneousreplace.item.Items;
-import pers.saikel0rado1iu.spontaneousreplace.item.ZhugeRepeatingCrossbowItem;
 import pers.saikel0rado1iu.spontaneousreplace.item.MarksCrossbowItem;
+import pers.saikel0rado1iu.spontaneousreplace.item.ZhugeRepeatingCrossbowItem;
 
 import java.util.Map;
 import java.util.Optional;
@@ -91,41 +90,41 @@ final class ModelGenerator extends FabricModelProvider {
 			JsonObject jsonObject = STEREOSCOPIC_ITEM.createJson(id, textures);
 			jsonObject.add("display", display);
 			JsonArray jsonArray = new JsonArray();
-			for (Item projectile : item.launchableProjectiles()) {
+			for (Item projectile : item.rangedWeapon(Optional.empty()).launchableProjectiles()) {
 				for (int count = 0; count < pullStage.length; count++) {
 					JsonObject predicate = new JsonObject();
 					JsonObject object = new JsonObject();
-					float index = item.getProjectileIndex(projectile);
-					if (index != 0) object.addProperty(Crossbow.PROJECTILE_INDEX_KEY, index);
-					object.addProperty(Bow.PULLING_KEY, 1);
-					object.addProperty(Bow.PULL_KEY, pullStage[count]);
+					float index = item.rangedWeapon(Optional.empty()).getProjectileIndex(projectile.getDefaultStack());
+					if (index != 0) object.addProperty(RangedWeaponComponent.PROJECTILE_INDEX_KEY, index);
+					object.addProperty(RangedWeaponComponent.PULLING_KEY, 1);
+					object.addProperty(RangedWeaponComponent.PULL_KEY, pullStage[count]);
 					predicate.add("predicate", object);
-					predicate.addProperty("model", id.withSuffixedPath('_' + Registries.ITEM.getId(projectile).getPath() + '_' + Bow.PULLING_KEY + '_' + count).toString());
+					predicate.addProperty("model", id.withSuffixedPath('_' + Registries.ITEM.getId(projectile).getPath() + '_' + RangedWeaponComponent.PULLING_KEY + '_' + count).toString());
 					jsonArray.add(predicate);
 				}
 				JsonObject predicate = new JsonObject();
 				JsonObject object = new JsonObject();
-				object.addProperty(Crossbow.CHARGED_KEY.toLowerCase(), 1);
-				float index = item.getProjectileIndex(projectile);
-				if (index != 0) object.addProperty(Crossbow.PROJECTILE_INDEX_KEY, index);
+				object.addProperty(RangedWeaponComponent.CHARGED_KEY.toLowerCase(), 1);
+				float index = item.rangedWeapon(Optional.empty()).getProjectileIndex(projectile.getDefaultStack());
+				if (index != 0) object.addProperty(RangedWeaponComponent.PROJECTILE_INDEX_KEY, index);
 				predicate.add("predicate", object);
 				predicate.addProperty("model", id.withSuffixedPath('_' + Registries.ITEM.getId(projectile).getPath()).toString());
 				jsonArray.add(predicate);
 				JsonObject predicate1 = new JsonObject();
 				JsonObject object1 = new JsonObject();
-				object1.addProperty(ShootExpansion.SHOT_KEY, 1);
-				float index1 = item.getProjectileIndex(projectile);
-				if (index1 != 0) object1.addProperty(Crossbow.PROJECTILE_INDEX_KEY, index1);
+				object1.addProperty(ShootProjectilesComponent.SHOT_KEY, 1);
+				float index1 = item.rangedWeapon(Optional.empty()).getProjectileIndex(projectile.getDefaultStack());
+				if (index1 != 0) object1.addProperty(RangedWeaponComponent.PROJECTILE_INDEX_KEY, index1);
 				predicate1.add("predicate", object1);
-				predicate1.addProperty("model", id.withSuffixedPath('_' + Registries.ITEM.getId(projectile).getPath() + '_' + ShootExpansion.SHOT_KEY).toString());
+				predicate1.addProperty("model", id.withSuffixedPath('_' + Registries.ITEM.getId(projectile).getPath() + '_' + ShootProjectilesComponent.SHOT_KEY).toString());
 				jsonArray.add(predicate1);
 			}
 			jsonObject.add("overrides", jsonArray);
 			return jsonObject;
 		});
-		for (Item projectile : item.launchableProjectiles()) {
+		for (Item projectile : item.rangedWeapon(Optional.empty()).launchableProjectiles()) {
 			for (int count = 0; count < pullStage.length; count++) {
-				String suffix = '_' + Registries.ITEM.getId(projectile).getPath() + '_' + Crossbow.PULLING_KEY + '_' + count;
+				String suffix = '_' + Registries.ITEM.getId(projectile).getPath() + '_' + RangedWeaponComponent.PULLING_KEY + '_' + count;
 				STEREOSCOPIC_ITEM.upload(ModelIds.getItemSubModelId(item, suffix), getTextureMap(item, suffix), generator.writer, (id, textures) -> {
 					JsonObject jsonObject = STEREOSCOPIC_ITEM.createJson(id, textures);
 					jsonObject.add("display", display);
@@ -133,7 +132,7 @@ final class ModelGenerator extends FabricModelProvider {
 				});
 			}
 		}
-		for (Item projectile : item.launchableProjectiles()) {
+		for (Item projectile : item.rangedWeapon(Optional.empty()).launchableProjectiles()) {
 			String suffix = '_' + Registries.ITEM.getId(projectile).getPath();
 			STEREOSCOPIC_ITEM.upload(ModelIds.getItemSubModelId(item, suffix), getTextureMap(item, suffix), generator.writer, (id, textures) -> {
 				JsonObject jsonObject = STEREOSCOPIC_ITEM.createJson(id, textures);
@@ -141,8 +140,8 @@ final class ModelGenerator extends FabricModelProvider {
 				return jsonObject;
 			});
 		}
-		for (Item projectile : item.launchableProjectiles()) {
-			String suffix = '_' + Registries.ITEM.getId(projectile).getPath() + '_' + ShootExpansion.SHOT_KEY;
+		for (Item projectile : item.rangedWeapon(Optional.empty()).launchableProjectiles()) {
+			String suffix = '_' + Registries.ITEM.getId(projectile).getPath() + '_' + ShootProjectilesComponent.SHOT_KEY;
 			STEREOSCOPIC_ITEM.upload(ModelIds.getItemSubModelId(item, suffix), getTextureMap(item, "_standby"), generator.writer, (id, textures) -> {
 				JsonObject jsonObject = STEREOSCOPIC_ITEM.createJson(id, textures);
 				jsonObject.add("display", display);
@@ -163,32 +162,32 @@ final class ModelGenerator extends FabricModelProvider {
 			JsonObject jsonObject = Models.GENERATED.createJson(id, textures);
 			jsonObject.add("display", display);
 			JsonArray jsonArray = new JsonArray();
-			for (Item projectile : item.launchableProjectiles()) {
+			for (Item projectile : item.rangedWeapon(Optional.empty()).launchableProjectiles()) {
 				for (int count = 0; count < pullStage.length; count++) {
 					JsonObject predicate = new JsonObject();
 					JsonObject object = new JsonObject();
-					float index = item.getProjectileIndex(projectile);
-					if (index != 0) object.addProperty(Crossbow.PROJECTILE_INDEX_KEY, index);
-					object.addProperty(Bow.PULLING_KEY, 1);
-					object.addProperty(Bow.PULL_KEY, pullStage[count]);
+					float index = item.rangedWeapon(Optional.empty()).getProjectileIndex(projectile.getDefaultStack());
+					if (index != 0) object.addProperty(RangedWeaponComponent.PROJECTILE_INDEX_KEY, index);
+					object.addProperty(RangedWeaponComponent.PULLING_KEY, 1);
+					object.addProperty(RangedWeaponComponent.PULL_KEY, pullStage[count]);
 					predicate.add("predicate", object);
-					predicate.addProperty("model", id.withSuffixedPath('_' + Registries.ITEM.getId(projectile).getPath() + '_' + Bow.PULLING_KEY + '_' + count).toString());
+					predicate.addProperty("model", id.withSuffixedPath('_' + Registries.ITEM.getId(projectile).getPath() + '_' + RangedWeaponComponent.PULLING_KEY + '_' + count).toString());
 					jsonArray.add(predicate);
 				}
 				JsonObject predicate = new JsonObject();
 				JsonObject object = new JsonObject();
-				object.addProperty(Crossbow.CHARGED_KEY.toLowerCase(), 1);
-				float index = item.getProjectileIndex(projectile);
-				if (index != 0) object.addProperty(Crossbow.PROJECTILE_INDEX_KEY, index);
+				object.addProperty(RangedWeaponComponent.CHARGED_KEY.toLowerCase(), 1);
+				float index = item.rangedWeapon(Optional.empty()).getProjectileIndex(projectile.getDefaultStack());
+				if (index != 0) object.addProperty(RangedWeaponComponent.PROJECTILE_INDEX_KEY, index);
 				predicate.add("predicate", object);
 				predicate.addProperty("model", id.withSuffixedPath('_' + Registries.ITEM.getId(projectile).getPath()).toString());
 				jsonArray.add(predicate);
 			}
 			JsonObject predicate = new JsonObject();
 			JsonObject object = new JsonObject();
-			object.addProperty(ShootExpansion.SHOT_KEY, 1);
+			object.addProperty(ShootProjectilesComponent.SHOT_KEY, 1);
 			predicate.add("predicate", object);
-			predicate.addProperty("model", id.withSuffixedPath('_' + ShootExpansion.SHOT_KEY).toString());
+			predicate.addProperty("model", id.withSuffixedPath('_' + ShootProjectilesComponent.SHOT_KEY).toString());
 			jsonArray.add(predicate);
 			jsonObject.add("overrides", jsonArray);
 			return jsonObject;
@@ -214,9 +213,9 @@ final class ModelGenerator extends FabricModelProvider {
 		displays[4].add(ModelTransformationMode.THIRD_PERSON_LEFT_HAND.asString(), ModelGenUtil.modelTransModeJson(new Vec3d(-80, -280, 40), new Vec3d(-1, 0.5, 8.5), new Vec3d(1.25, 1.25, 1.25)));
 		displays[4].add(ModelTransformationMode.FIRST_PERSON_RIGHT_HAND.asString(), ModelGenUtil.modelTransModeJson(new Vec3d(0, -90, 25), new Vec3d(1.13, 3.1, 4.75), new Vec3d(0.68, 0.68, 0.68)));
 		displays[4].add(ModelTransformationMode.FIRST_PERSON_LEFT_HAND.asString(), ModelGenUtil.modelTransModeJson(new Vec3d(0, 90, -25), new Vec3d(1.13, 3.1, 4.75), new Vec3d(0.68, 0.68, 0.68)));
-		for (Item projectile : item.launchableProjectiles()) {
+		for (Item projectile : item.rangedWeapon(Optional.empty()).launchableProjectiles()) {
 			for (int count = 0; count < pullStage.length; count++) {
-				String suffix = '_' + Registries.ITEM.getId(projectile).getPath() + '_' + Crossbow.PULLING_KEY + '_' + count;
+				String suffix = '_' + Registries.ITEM.getId(projectile).getPath() + '_' + RangedWeaponComponent.PULLING_KEY + '_' + count;
 				final int finalCount = count;
 				new Model(Optional.of(ModelIds.getItemModelId(item)), Optional.empty(), TextureKey.LAYER0)
 						.upload(ModelIds.getItemSubModelId(item, suffix), TextureMap.layer0(TextureMap.getSubId(item, suffix)), generator.writer, (id, textures) -> {
@@ -226,7 +225,7 @@ final class ModelGenerator extends FabricModelProvider {
 						});
 			}
 		}
-		for (Item projectile : item.launchableProjectiles()) {
+		for (Item projectile : item.rangedWeapon(Optional.empty()).launchableProjectiles()) {
 			String suffix = '_' + Registries.ITEM.getId(projectile).getPath();
 			new Model(Optional.of(ModelIds.getItemModelId(item)), Optional.empty(), TextureKey.LAYER0)
 					.upload(ModelIds.getItemSubModelId(item, suffix), TextureMap.layer0(TextureMap.getSubId(item, suffix)), generator.writer, (id, textures) -> {
@@ -241,7 +240,7 @@ final class ModelGenerator extends FabricModelProvider {
 					});
 		}
 		new Model(Optional.of(ModelIds.getItemModelId(item)), Optional.empty(), TextureKey.LAYER0)
-				.upload(ModelIds.getItemSubModelId(item, '_' + ShootExpansion.SHOT_KEY), TextureMap.layer0(TextureMap.getSubId(item, '_' + ShootExpansion.SHOT_KEY)), generator.writer, (id, textures) -> {
+				.upload(ModelIds.getItemSubModelId(item, '_' + ShootProjectilesComponent.SHOT_KEY), TextureMap.layer0(TextureMap.getSubId(item, '_' + ShootProjectilesComponent.SHOT_KEY)), generator.writer, (id, textures) -> {
 					JsonObject dis = new JsonObject();
 					dis.add(ModelTransformationMode.THIRD_PERSON_RIGHT_HAND.asString(), ModelGenUtil.modelTransModeJson(new Vec3d(-80, 260, -40), new Vec3d(-1, 0.5, 8.5), new Vec3d(1.25, 1.25, 1.25)));
 					dis.add(ModelTransformationMode.THIRD_PERSON_LEFT_HAND.asString(), ModelGenUtil.modelTransModeJson(new Vec3d(-80, -280, 40), new Vec3d(-1, 0.5, 8.5), new Vec3d(1.25, 1.25, 1.25)));

@@ -25,6 +25,7 @@
 package pers.saikel0rado1iu.spontaneousreplace.data;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.minecraft.registry.RegistryWrapper;
 import pers.saikel0rado1iu.silk.api.codex.OptionTexts;
 import pers.saikel0rado1iu.silk.api.generate.data.LinkedLanguageProvider;
 import pers.saikel0rado1iu.silk.api.modpass.pack.DataPack;
@@ -37,6 +38,8 @@ import pers.saikel0rado1iu.spontaneousreplace.item.ItemGroups;
 import pers.saikel0rado1iu.spontaneousreplace.item.Items;
 import pers.saikel0rado1iu.spontaneousreplace.sound.SoundEvents;
 
+import java.util.concurrent.CompletableFuture;
+
 /**
  * <h2 style="color:FFC800">语言生成器</h2>
  * 自然更替的全球化语言生成器
@@ -46,12 +49,12 @@ import pers.saikel0rado1iu.spontaneousreplace.sound.SoundEvents;
  */
 interface LanguageGenerator {
 	final class EnUs extends LinkedLanguageProvider {
-		EnUs(FabricDataOutput dataOutput) {
-			super(dataOutput, "en_us");
+		EnUs(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+			super(dataOutput, "en_us", registryLookup);
 		}
 		
 		@Override
-		public void generateTranslations(TranslationBuilder translationBuilder) {
+		public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
 			translationBuilder.add(comment("note"), "Origin Language is Simplified Chinese(zh_cn)");
 			translationBuilder.add(i18nName(SpontaneousReplace.INSTANCE), "§6Spontaneous-Replace");
 			translationBuilder.add(i18nSummary(SpontaneousReplace.INSTANCE), "Provide players with enhanced vanilla adventures with new content");
@@ -170,10 +173,10 @@ interface LanguageGenerator {
 			translationBuilder.add(Blocks.CUFE_BLOCK, "Block of CuFe");
 			translationBuilder.add(Blocks.AUCU_BLOCK, "Block of AuCu");
 			translationBuilder.add(Blocks.STEEL_BLOCK, "Block of Steel");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_REFINED_COPPER), "Refined copper armor clanks");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_CUFE_ALLOY), "CuFe alloy armor clangs");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_AUCU_ALLOY), "AuCu alloy armor clinks");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_STEEL), "Steel armor cling");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_REFINED_COPPER.value()), "Refined copper armor clanks");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_CUFE_ALLOY.value()), "CuFe alloy armor clangs");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_AUCU_ALLOY.value()), "AuCu alloy armor clinks");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_STEEL.value()), "Steel armor cling");
 			translationBuilder.add(soundSub(SoundEvents.STONEBALL_THROW), "Stoneball flies");
 			translationBuilder.add(soundSub(SoundEvents.SLINGSHOT_THROW), "Pellet fired");
 			translationBuilder.add(soundSub(SoundEvents.ARBALEST_LOADING_START), "Arbalest charges up");
@@ -185,7 +188,7 @@ interface LanguageGenerator {
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_LOADING_START), "Marks-Crossbow charges up");
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_LOADING_END), "Marks-Crossbow loads");
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_SHOOT), "Marks-Crossbow fires");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_ARROWPROOF), "Arrowproof vest rustles");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_ARROWPROOF.value()), "Arrowproof vest rustles");
 			translationBuilder.add(advancementTitle(AdvancementGenerator.ROOT), "SR Vanilla Extension");
 			translationBuilder.add(advancementDesc(AdvancementGenerator.ROOT), "Play the vanilla extension content provided to you by Natural Replacement");
 			translationBuilder.add(advancementTitle(AdvancementGenerator.HAVE_A_NEW_METAL), "Bold Attempt");
@@ -242,12 +245,12 @@ interface LanguageGenerator {
 	}
 	
 	final class ZhCn extends LinkedLanguageProvider {
-		ZhCn(FabricDataOutput dataOutput) {
-			super(dataOutput, "zh_cn");
+		ZhCn(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+			super(dataOutput, "zh_cn", registryLookup);
 		}
 		
 		@Override
-		public void generateTranslations(TranslationBuilder translationBuilder) {
+		public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
 			translationBuilder.add(comment("note"), "原生语言");
 			translationBuilder.add(i18nName(SpontaneousReplace.INSTANCE), "§6自然更替");
 			translationBuilder.add(i18nSummary(SpontaneousReplace.INSTANCE), "通过新内容为玩家提供加强的原版冒险");
@@ -366,10 +369,10 @@ interface LanguageGenerator {
 			translationBuilder.add(Blocks.CUFE_BLOCK, "铜铁块");
 			translationBuilder.add(Blocks.AUCU_BLOCK, "金铜块");
 			translationBuilder.add(Blocks.STEEL_BLOCK, "钢块");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_REFINED_COPPER), "精铜盔甲：嗙嘡");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_CUFE_ALLOY), "铜铁盔甲：钪锵");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_AUCU_ALLOY), "金铜盔甲：铤镗");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_STEEL), "钢盔甲：叮嘡");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_REFINED_COPPER.value()), "精铜盔甲：嗙嘡");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_CUFE_ALLOY.value()), "铜铁盔甲：钪锵");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_AUCU_ALLOY.value()), "金铜盔甲：铤镗");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_STEEL.value()), "钢盔甲：叮嘡");
 			translationBuilder.add(soundSub(SoundEvents.STONEBALL_THROW), "石弹：飞出");
 			translationBuilder.add(soundSub(SoundEvents.SLINGSHOT_THROW), "丫弹弓：投掷");
 			translationBuilder.add(soundSub(SoundEvents.ARBALEST_LOADING_START), "劲弩：蓄力");
@@ -381,7 +384,7 @@ interface LanguageGenerator {
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_LOADING_START), "神臂弩：蓄力");
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_LOADING_END), "神臂弩：装填");
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_SHOOT), "神臂弩：发射");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_ARROWPROOF), "防箭衣：摩擦");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_ARROWPROOF.value()), "防箭衣：摩擦");
 			translationBuilder.add(advancementTitle(AdvancementGenerator.ROOT), "「自然更替」原版拓展");
 			translationBuilder.add(advancementDesc(AdvancementGenerator.ROOT), "游玩来自「自然更替」为您提供的原版拓展");
 			translationBuilder.add(advancementTitle(AdvancementGenerator.HAVE_A_NEW_METAL), "大胆的尝试");
@@ -438,12 +441,12 @@ interface LanguageGenerator {
 	}
 	
 	final class ZhHk extends LinkedLanguageProvider {
-		ZhHk(FabricDataOutput dataOutput) {
-			super(dataOutput, "zh_hk");
+		ZhHk(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+			super(dataOutput, "zh_hk", registryLookup);
 		}
 		
 		@Override
-		public void generateTranslations(TranslationBuilder translationBuilder) {
+		public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
 			translationBuilder.add(comment("note"), "原生語言為簡體中文(zh_cn)");
 			translationBuilder.add(i18nName(SpontaneousReplace.INSTANCE), "§6自然更替");
 			translationBuilder.add(i18nSummary(SpontaneousReplace.INSTANCE), "通過新內容為玩家提供加強嘅原版冒險");
@@ -562,10 +565,10 @@ interface LanguageGenerator {
 			translationBuilder.add(Blocks.CUFE_BLOCK, "銅鐵磚");
 			translationBuilder.add(Blocks.AUCU_BLOCK, "金銅磚");
 			translationBuilder.add(Blocks.STEEL_BLOCK, "鋼磚");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_REFINED_COPPER), "裝備精铜盔甲");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_CUFE_ALLOY), "裝備銅鐵盔甲");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_AUCU_ALLOY), "裝備金銅盔甲");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_STEEL), "裝備鋼盔甲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_REFINED_COPPER.value()), "裝備精铜盔甲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_CUFE_ALLOY.value()), "裝備銅鐵盔甲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_AUCU_ALLOY.value()), "裝備金銅盔甲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_STEEL.value()), "裝備鋼盔甲");
 			translationBuilder.add(soundSub(SoundEvents.STONEBALL_THROW), "石彈丸被掟出");
 			translationBuilder.add(soundSub(SoundEvents.SLINGSHOT_THROW), "掟出聲");
 			translationBuilder.add(soundSub(SoundEvents.ARBALEST_LOADING_START), "勁弩搭箭");
@@ -577,7 +580,7 @@ interface LanguageGenerator {
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_LOADING_START), "神臂弩搭箭");
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_LOADING_END), "神臂弩裝填");
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_SHOOT), "神臂弩發射");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_ARROWPROOF), "裝備防箭衣");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_ARROWPROOF.value()), "裝備防箭衣");
 			translationBuilder.add(advancementTitle(AdvancementGenerator.ROOT), "「自然更替」原版拓展");
 			translationBuilder.add(advancementDesc(AdvancementGenerator.ROOT), "遊玩來自「自然更替」為您提供嘅原版拓展");
 			translationBuilder.add(advancementTitle(AdvancementGenerator.HAVE_A_NEW_METAL), "大膽嘅嘗試");
@@ -634,12 +637,12 @@ interface LanguageGenerator {
 	}
 	
 	final class ZhTw extends LinkedLanguageProvider {
-		ZhTw(FabricDataOutput dataOutput) {
-			super(dataOutput, "zh_tw");
+		ZhTw(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+			super(dataOutput, "zh_tw", registryLookup);
 		}
 		
 		@Override
-		public void generateTranslations(TranslationBuilder translationBuilder) {
+		public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
 			translationBuilder.add(comment("note"), "原生語言為簡體中文(zh_cn)");
 			translationBuilder.add(i18nName(SpontaneousReplace.INSTANCE), "§6自然更替");
 			translationBuilder.add(i18nSummary(SpontaneousReplace.INSTANCE), "透過新內容為玩家提供加強的原版冒險");
@@ -758,10 +761,10 @@ interface LanguageGenerator {
 			translationBuilder.add(Blocks.CUFE_BLOCK, "銅鐵方塊");
 			translationBuilder.add(Blocks.AUCU_BLOCK, "金銅方塊");
 			translationBuilder.add(Blocks.STEEL_BLOCK, "鋼方塊");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_REFINED_COPPER), "精铜盔甲裝備聲");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_CUFE_ALLOY), "銅鐵盔甲裝備聲");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_AUCU_ALLOY), "金銅盔甲裝備聲");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_STEEL), "鋼製盔甲裝備聲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_REFINED_COPPER.value()), "精铜盔甲裝備聲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_CUFE_ALLOY.value()), "銅鐵盔甲裝備聲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_AUCU_ALLOY.value()), "金銅盔甲裝備聲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_STEEL.value()), "鋼製盔甲裝備聲");
 			translationBuilder.add(soundSub(SoundEvents.STONEBALL_THROW), "投擲石彈聲");
 			translationBuilder.add(soundSub(SoundEvents.SLINGSHOT_THROW), "投擲彈丸");
 			translationBuilder.add(soundSub(SoundEvents.ARBALEST_LOADING_START), "勁弩上弦");
@@ -773,7 +776,7 @@ interface LanguageGenerator {
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_LOADING_START), "神臂弩上弦");
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_LOADING_END), "神臂弩裝填");
 			translationBuilder.add(soundSub(SoundEvents.MARKS_CROSSBOW_SHOOT), "神臂弩發射");
-			translationBuilder.add(soundSub(SoundEvents.EQUIP_ARROWPROOF), "防箭衣裝備聲");
+			translationBuilder.add(soundSub(SoundEvents.EQUIP_ARROWPROOF.value()), "防箭衣裝備聲");
 			translationBuilder.add(advancementTitle(AdvancementGenerator.ROOT), "「自然更替」原版拓展");
 			translationBuilder.add(advancementDesc(AdvancementGenerator.ROOT), "遊玩來自「自然更替」為您提供的原版拓展");
 			translationBuilder.add(advancementTitle(AdvancementGenerator.HAVE_A_NEW_METAL), "大膽的嘗試");

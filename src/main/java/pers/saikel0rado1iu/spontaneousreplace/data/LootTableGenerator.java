@@ -26,7 +26,10 @@ package pers.saikel0rado1iu.spontaneousreplace.data;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.registry.RegistryWrapper;
 import pers.saikel0rado1iu.spontaneousreplace.block.Blocks;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * <h2 style="color:FFC800">战利品表生成器</h2>
@@ -37,8 +40,8 @@ import pers.saikel0rado1iu.spontaneousreplace.block.Blocks;
  */
 interface LootTableGenerator {
 	final class Block extends FabricBlockLootTableProvider {
-		Block(FabricDataOutput dataOutput) {
-			super(dataOutput);
+		Block(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+			super(dataOutput, registryLookup);
 		}
 		
 		@Override

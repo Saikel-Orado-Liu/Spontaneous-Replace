@@ -27,6 +27,7 @@ package pers.saikel0rado1iu.spontaneousreplace.item;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ArrowItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pers.saikel0rado1iu.spontaneousreplace.entity.projectile.SteelArrowEntity;
@@ -39,7 +40,7 @@ import pers.saikel0rado1iu.spontaneousreplace.entity.projectile.SteelArrowEntity
  * @since 1.0.0
  */
 public class SteelArrowItem extends ArrowItem {
-	public SteelArrowItem(Settings settings) {
+	public SteelArrowItem(Item.Settings settings) {
 		super(settings);
 	}
 	

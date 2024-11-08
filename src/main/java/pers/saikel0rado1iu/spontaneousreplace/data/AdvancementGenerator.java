@@ -34,19 +34,22 @@ import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.advancement.criterion.OnKilledCriterion;
 import net.minecraft.advancement.criterion.TargetHitCriterion;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.ItemStack;
 import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.loot.context.LootContext;
-import net.minecraft.nbt.NbtString;
+import net.minecraft.potion.Potions;
+import net.minecraft.predicate.ComponentPredicate;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.DistancePredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.entity.LootContextPredicate;
-import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.RangedKilledEntityCriterion;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.ShotProjectileCriterion;
@@ -57,6 +60,7 @@ import pers.saikel0rado1iu.spontaneousreplace.item.Items;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 import static net.minecraft.item.Items.*;
@@ -109,11 +113,7 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 			.build();
 	public static final AdvancementEntry USE_SLINGSHOT_WITH_POTION = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "use_slingshot_with_potion")
 			.parent(USE_SLINGSHOT)
-			.display(Suppliers.memoize(() -> {
-				ItemStack stack = new ItemStack(SPLASH_POTION);
-				stack.setSubNbt("Potion", NbtString.of("healing"));
-				return stack;
-			}).get(), null, AdvancementFrame.TASK, true, true, false)
+			.display(PotionContentsComponent.createStack(SPLASH_POTION, Potions.HEALING), null, AdvancementFrame.TASK, true, true, false)
 			.criterion("use_slingshot", ShotProjectileCriterion.Conditions.ranged(Items.SLINGSHOT).projectile(EntityPredicate.Builder.create().type(EntityType.POTION).build()).build().create())
 			.build();
 	public static final AdvancementEntry HAVE_A_JUGER_REPEATING_CROSSBOW = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_a_juger_repeating_crossbow")
@@ -125,9 +125,13 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 			.parent(HAVE_A_JUGER_REPEATING_CROSSBOW)
 			.display(Items.ZHUGE_REPEATING_CROSSBOW, null, AdvancementFrame.CHALLENGE, true, true, true)
 			.criterion(RecipeProvider.hasItem(Items.ZHUGE_REPEATING_CROSSBOW), InventoryChangedCriterion.Conditions.items(ItemPredicate.Builder.create().items(Items.ZHUGE_REPEATING_CROSSBOW)
-					.enchantment(new EnchantmentPredicate(Enchantments.MULTISHOT, NumberRange.IntRange.exactly(1)))
-					.enchantment(new EnchantmentPredicate(Enchantments.QUICK_CHARGE, NumberRange.IntRange.exactly(3)))
-					.enchantment(new EnchantmentPredicate(Enchantments.UNBREAKING, NumberRange.IntRange.exactly(5))).build()))
+					.component(ComponentPredicate.builder().add(DataComponentTypes.ENCHANTMENTS, Suppliers.memoize(() -> {
+						ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
+						builder.add(Enchantments.MULTISHOT, 1);
+						builder.add(Enchantments.QUICK_CHARGE, 3);
+						builder.add(Enchantments.UNBREAKING, 5);
+						return builder.build();
+					}).get()).build()).build()))
 			.rewards(AdvancementRewards.Builder.experience(100))
 			.build();
 	public static final AdvancementEntry USE_JUGER_REPEATING_CROSSBOW_SHOT_1000_ARROWS = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "use_juger_repeating_crossbow_shot_1000_arrows")
@@ -165,9 +169,13 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 			.parent(HAVE_A_MARKS_CROSSBOW)
 			.display(Items.MARKS_CROSSBOW, null, AdvancementFrame.CHALLENGE, true, true, true)
 			.criterion(RecipeProvider.hasItem(Items.MARKS_CROSSBOW), InventoryChangedCriterion.Conditions.items(ItemPredicate.Builder.create().items(Items.MARKS_CROSSBOW)
-					.enchantment(new EnchantmentPredicate(Enchantments.PIERCING, NumberRange.IntRange.exactly(4)))
-					.enchantment(new EnchantmentPredicate(Enchantments.QUICK_CHARGE, NumberRange.IntRange.exactly(3)))
-					.enchantment(new EnchantmentPredicate(Enchantments.UNBREAKING, NumberRange.IntRange.exactly(5))).build()))
+					.component(ComponentPredicate.builder().add(DataComponentTypes.ENCHANTMENTS, Suppliers.memoize(() -> {
+						ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
+						builder.add(Enchantments.PIERCING, 4);
+						builder.add(Enchantments.QUICK_CHARGE, 3);
+						builder.add(Enchantments.UNBREAKING, 5);
+						return builder.build();
+					}).get()).build()).build()))
 			.rewards(AdvancementRewards.Builder.experience(100))
 			.build();
 	public static final AdvancementEntry HAVE_ALL_BASIC_RANGED = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_all_basic_ranged")
@@ -306,12 +314,12 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 			.criterion(RecipeProvider.hasItem(Items.STEEL_INGOT), InventoryChangedCriterion.Conditions.items(Items.STEEL_INGOT))
 			.build();
 	
-	AdvancementGenerator(FabricDataOutput output) {
-		super(output);
+	AdvancementGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+		super(output, registryLookup);
 	}
 	
 	@Override
-	public void generateAdvancement(Consumer<AdvancementEntry> consumer) {
+	public void generateAdvancement(RegistryWrapper.WrapperLookup wrapperLookup, Consumer<AdvancementEntry> consumer) {
 		consumer.accept(ROOT);
 		consumer.accept(HAVE_A_NEW_METAL);
 		consumer.accept(HAVE_A_REFINED_COPPER);

@@ -33,10 +33,13 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
 import pers.saikel0rado1iu.silk.api.base.common.util.TickUtil;
 import pers.saikel0rado1iu.silk.api.generate.data.RecipeGenUtil;
 import pers.saikel0rado1iu.silk.api.generate.data.family.EquipFamily;
 import pers.saikel0rado1iu.spontaneousreplace.item.Items;
+
+import java.util.concurrent.CompletableFuture;
 
 import static net.minecraft.item.Items.*;
 
@@ -48,8 +51,8 @@ import static net.minecraft.item.Items.*;
  * @since 1.0.0
  */
 final class RecipeGenerator extends FabricRecipeProvider {
-	RecipeGenerator(FabricDataOutput output) {
-		super(output);
+	RecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		super(output, registriesFuture);
 	}
 	
 	@Override

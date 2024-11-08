@@ -24,18 +24,23 @@
 
 package pers.saikel0rado1iu.spontaneousreplace.item;
 
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableList;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.Criteria;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.RangedKilledEntityCriterion;
-import pers.saikel0rado1iu.silk.api.ropestick.ranged.Bow;
+import pers.saikel0rado1iu.silk.api.ropestick.component.DataComponentTypes;
+import pers.saikel0rado1iu.silk.api.ropestick.component.type.AdjustFovData;
+import pers.saikel0rado1iu.silk.api.ropestick.component.type.AdjustFovWhileUseComponent;
+import pers.saikel0rado1iu.silk.api.ropestick.component.type.ModifyMoveWhileUseComponent;
+import pers.saikel0rado1iu.silk.api.ropestick.component.type.RangedWeaponComponent;
+import pers.saikel0rado1iu.silk.api.ropestick.ranged.BowLikeItem;
 
-import java.util.Set;
+import java.util.Optional;
 
 /**
  * <h2 style="color:FFC800">反曲弓物品</h2>
@@ -44,12 +49,31 @@ import java.util.Set;
  * @author <a href="https://github.com/Saikel-Orado-Liu"><img alt="author" src="https://avatars.githubusercontent.com/u/88531138?s=64&v=4"></a>
  * @since 1.0.0
  */
-public class RecurveBowItem extends Bow {
+public class RecurveBowItem extends BowLikeItem {
 	/**
 	 * @param settings 物品设置
 	 */
 	public RecurveBowItem(Settings settings) {
-		super(settings);
+		super(settings
+				.component(DataComponentTypes.ADJUST_FOV_WHILE_USE, AdjustFovWhileUseComponent.create(false, Optional.empty(), false, AdjustFovData.BOW_FOV_SCALING * 2 - 1))
+				.component(DataComponentTypes.MODIFY_MOVE_WHILE_USE, ModifyMoveWhileUseComponent.of(0.5F)));
+	}
+	
+	@Override
+	public RangedWeaponComponent rangedWeapon(Optional<ItemStack> stack) {
+		int pull = stack.filter(value -> EnchantmentHelper.getLevel(Enchantments.QUICK_CHARGE, value) > 0).map(value -> (int) (RangedWeaponComponent.BOW_MAX_PULL_TICKS * 0.25)).orElseGet(() -> (int) (RangedWeaponComponent.BOW_MAX_PULL_TICKS * 0.75));
+		return RangedWeaponComponent.builder()
+				.maxSpeed(4)
+				.maxDamage(RangedWeaponComponent.BOW_MAX_DAMAGE * 1.5F)
+				.maxUseTicks(RangedWeaponComponent.BOW_MAX_USE_TICKS)
+				.maxPullTicks(pull)
+				.firingError(RangedWeaponComponent.DEFAULT_FIRING_ERROR)
+				.defaultProjectile(Items.ARROW.getDefaultStack())
+				.launchableProjectiles(ImmutableList.of(
+						Items.ARROW,
+						Items.SPECTRAL_ARROW,
+						Items.TIPPED_ARROW))
+				.build();
 	}
 	
 	/**
@@ -63,92 +87,5 @@ public class RecurveBowItem extends Bow {
 	public void triggerCriteria(ServerPlayerEntity serverPlayer, ItemStack ranged, ProjectileEntity projectile) {
 		RangedKilledEntityCriterion.setRangedWeapon(projectile, ranged);
 		Criteria.SHOT_PROJECTILE_CRITERION.trigger(serverPlayer, ranged, projectile, 1);
-	}
-	
-	/**
-	 * 设置发射物索引以供 JSON 渲染使用
-	 *
-	 * @param stack         物品堆栈
-	 * @param useProjectile 使用的发射物
-	 */
-	@Override
-	public void setProjectileIndex(ItemStack stack, ItemStack useProjectile) {
-		NbtCompound nbtCompound = stack.getOrCreateNbt();
-		nbtCompound.putFloat(PROJECTILE_INDEX_KEY, 0);
-		if (useProjectile == null) return;
-		if (useProjectile.isOf(Items.ARROW)) nbtCompound.putFloat(PROJECTILE_INDEX_KEY, 0);
-		else if (useProjectile.isOf(Items.TIPPED_ARROW)) nbtCompound.putFloat(PROJECTILE_INDEX_KEY, 0.1F);
-		else if (useProjectile.isOf(Items.SPECTRAL_ARROW)) nbtCompound.putFloat(PROJECTILE_INDEX_KEY, 0.2F);
-	}
-	
-	/**
-	 * 获取发射物索引以供 JSON 渲染使用
-	 *
-	 * @param stack 物品堆栈
-	 * @return 索引
-	 */
-	@Override
-	public float getProjectileIndex(ItemStack stack) {
-		NbtCompound nbtCompound = stack.getNbt();
-		return nbtCompound != null ? nbtCompound.getFloat(PROJECTILE_INDEX_KEY) : 0;
-	}
-	
-	/**
-	 * 获取发射物索引以供 JSON 渲染使用
-	 *
-	 * @param projectile 发射物
-	 * @return 索引
-	 */
-	@Override
-	public float getProjectileIndex(Item projectile) {
-		if (projectile == Items.ARROW) return 0;
-		else if (projectile == Items.TIPPED_ARROW) return 0.1F;
-		else if (projectile == Items.SPECTRAL_ARROW) return 0.2F;
-		else return 0;
-	}
-	
-	/**
-	 * 默认的发射物
-	 *
-	 * @return 发射物物品堆栈
-	 */
-	@Override
-	public Item defaultProjectile() {
-		return Items.ARROW;
-	}
-	
-	/**
-	 * 获取远程武器能发射的所有的发射物
-	 *
-	 * @return 发射物集合
-	 */
-	@Override
-	public Set<Item> launchableProjectiles() {
-		return ImmutableSet.of(Items.ARROW, Items.TIPPED_ARROW, Items.SPECTRAL_ARROW);
-	}
-	
-	@Override
-	public float maxDamage() {
-		return super.maxDamage() * 1.5F;
-	}
-	
-	@Override
-	public float maxProjectileSpeed() {
-		return 4;
-	}
-	
-	@Override
-	public int maxPullTicks() {
-		return (int) (super.maxPullTicks() * 0.75);
-	}
-	
-	@Override
-	public float moveSpeedMultiple() {
-		return 0.5F;
-	}
-	
-	@Override
-	public float fovScaling() {
-		return super.fovScaling() * 2 - 1;
 	}
 }

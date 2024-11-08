@@ -25,11 +25,12 @@
 package pers.saikel0rado1iu.spontaneousreplace.client.item;
 
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.item.DyeableItem;
+import net.minecraft.component.type.DyedColorComponent;
 import pers.saikel0rado1iu.silk.api.client.ropestick.ranged.BowModelPredicateProvider;
 import pers.saikel0rado1iu.silk.api.client.ropestick.ranged.CrossbowModelPredicateProvider;
 import pers.saikel0rado1iu.silk.api.client.ropestick.ranged.FirearmModelPredicateProvider;
 import pers.saikel0rado1iu.silk.api.spinningjenny.ItemRegistry;
+import pers.saikel0rado1iu.spontaneousreplace.item.ArmorMaterials;
 
 import static pers.saikel0rado1iu.spontaneousreplace.item.Items.*;
 
@@ -48,6 +49,6 @@ public abstract class Items implements ItemRegistry {
 		ItemRegistry.registrar(() -> BowModelPredicateProvider.register(COMPOUND_BOW)).register(COMPOUND_BOW);
 		ItemRegistry.registrar(() -> FirearmModelPredicateProvider.register(ZHUGE_REPEATING_CROSSBOW)).register(ZHUGE_REPEATING_CROSSBOW);
 		ItemRegistry.registrar(() -> FirearmModelPredicateProvider.register(MARKS_CROSSBOW)).register(MARKS_CROSSBOW);
-		ItemRegistry.registrar(() -> ColorProviderRegistry.ITEM.register(((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem) stack.getItem()).getColor(stack)), ARROWPROOF_VEST)).register(ARROWPROOF_VEST);
+		ItemRegistry.registrar(() -> ColorProviderRegistry.ITEM.register(((stack, tintIndex) -> tintIndex > 0 ? -1 : DyedColorComponent.getColor(stack, ArmorMaterials.ARROWPROOF_COLOR)), ARROWPROOF_VEST)).register(ARROWPROOF_VEST);
 	}
 }

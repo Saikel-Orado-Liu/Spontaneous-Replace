@@ -50,11 +50,23 @@ interface TagGenerator {
 		@Override
 		protected void configure(RegistryWrapper.WrapperLookup arg) {
 			getOrCreateTagBuilder(ItemTags.COALS).add(Items.CLEAN_COAL);
+			getOrCreateTagBuilder(ItemTags.DYEABLE).add(Items.ARROWPROOF_VEST);
+			getOrCreateTagBuilder(ItemTags.HEAD_ARMOR).add(Items.REFINED_COPPER_HELMET, Items.CUFE_ALLOY_HELMET, Items.AUCU_ALLOY_HELMET, Items.STEEL_HELMET);
+			getOrCreateTagBuilder(ItemTags.CHEST_ARMOR).add(Items.REFINED_COPPER_CHESTPLATE, Items.CUFE_ALLOY_CHESTPLATE, Items.AUCU_ALLOY_CHESTPLATE, Items.STEEL_CHESTPLATE, Items.ARROWPROOF_VEST);
+			getOrCreateTagBuilder(ItemTags.LEG_ARMOR).add(Items.REFINED_COPPER_LEGGINGS, Items.CUFE_ALLOY_LEGGINGS, Items.AUCU_ALLOY_LEGGINGS, Items.STEEL_LEGGINGS);
+			getOrCreateTagBuilder(ItemTags.FOOT_ARMOR).add(Items.REFINED_COPPER_BOOTS, Items.CUFE_ALLOY_BOOTS, Items.AUCU_ALLOY_BOOTS, Items.STEEL_BOOTS);
 			getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(
 					Items.REFINED_COPPER_HELMET, Items.REFINED_COPPER_CHESTPLATE, Items.REFINED_COPPER_LEGGINGS, Items.REFINED_COPPER_BOOTS,
 					Items.CUFE_ALLOY_HELMET, Items.CUFE_ALLOY_CHESTPLATE, Items.CUFE_ALLOY_LEGGINGS, Items.CUFE_ALLOY_BOOTS,
 					Items.AUCU_ALLOY_HELMET, Items.AUCU_ALLOY_CHESTPLATE, Items.AUCU_ALLOY_LEGGINGS, Items.AUCU_ALLOY_BOOTS,
 					Items.STEEL_HELMET, Items.STEEL_CHESTPLATE, Items.STEEL_LEGGINGS, Items.STEEL_BOOTS);
+			getOrCreateTagBuilder(ItemTags.SHOVELS).add(Items.REFINED_COPPER_SHOVEL, Items.CUFE_ALLOY_SHOVEL, Items.AUCU_ALLOY_SHOVEL, Items.STEEL_SHOVEL);
+			getOrCreateTagBuilder(ItemTags.PICKAXES).add(Items.REFINED_COPPER_PICKAXE, Items.CUFE_ALLOY_PICKAXE, Items.AUCU_ALLOY_PICKAXE, Items.STEEL_PICKAXE);
+			getOrCreateTagBuilder(ItemTags.AXES).add(Items.REFINED_COPPER_AXE, Items.CUFE_ALLOY_AXE, Items.AUCU_ALLOY_AXE, Items.STEEL_AXE);
+			getOrCreateTagBuilder(ItemTags.HOES).add(Items.REFINED_COPPER_HOE, Items.CUFE_ALLOY_HOE, Items.AUCU_ALLOY_HOE, Items.STEEL_HOE);
+			getOrCreateTagBuilder(ItemTags.SWORDS).add(Items.REFINED_COPPER_SWORD, Items.CUFE_ALLOY_SWORD, Items.AUCU_ALLOY_SWORD, Items.STEEL_SWORD);
+			getOrCreateTagBuilder(ItemTags.BOW_ENCHANTABLE).add(Items.RECURVE_BOW, Items.COMPOUND_BOW);
+			getOrCreateTagBuilder(ItemTags.CROSSBOW_ENCHANTABLE).add(Items.ARBALEST);
 		}
 	}
 	
