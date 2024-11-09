@@ -26,7 +26,6 @@ package pers.saikel0rado1iu.spontaneousreplace.item;
 
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.*;
@@ -34,10 +33,9 @@ import pers.saikel0rado1iu.silk.api.ropestick.component.type.CustomEntityHurtCom
 import pers.saikel0rado1iu.silk.api.spinningjenny.ItemRegistry;
 import pers.saikel0rado1iu.spontaneousreplace.block.Blocks;
 
-import java.util.Objects;
-
 import static net.minecraft.component.DataComponentTypes.DYED_COLOR;
-import static net.minecraft.item.Items.*;
+import static net.minecraft.item.Items.COAL;
+import static net.minecraft.item.Items.SNOWBALL;
 import static pers.saikel0rado1iu.silk.api.ropestick.component.DataComponentTypes.CUSTOM_ENTITY_HURT;
 
 /**
@@ -106,12 +104,12 @@ public interface Items extends ItemRegistry {
 			.component(CUSTOM_ENTITY_HURT, new CustomEntityHurtComponent(ImmutableList.of(DamageTypes.MOB_PROJECTILE), "amount / 2")))).group(ItemGroups.COMBAT).register("arrowproof_vest");
 	StoneballItem STONEBALL = ItemRegistry.registrar(() -> new StoneballItem(new Item.Settings().maxCount(SNOWBALL.getMaxCount()))).group(ItemGroups.COMBAT).register("stoneball");
 	SteelArrowItem STEEL_ARROW = ItemRegistry.registrar(() -> new SteelArrowItem(new Item.Settings().maxCount(4))).group(ItemGroups.COMBAT).register("steel_arrow");
-	SlingshotItem SLINGSHOT = ItemRegistry.registrar(() -> new SlingshotItem(new Item.Settings().maxDamage(Objects.requireNonNull(BOW.getComponents().get(DataComponentTypes.MAX_DAMAGE)) / 2))).group(ItemGroups.COMBAT).register("slingshot");
-	RecurveBowItem RECURVE_BOW = ItemRegistry.registrar(() -> new RecurveBowItem(new Item.Settings().maxDamage(Objects.requireNonNull(BOW.getComponents().get(DataComponentTypes.MAX_DAMAGE)) * 2))).group(ItemGroups.COMBAT).register("recurve_bow");
-	ArbalestItem ARBALEST = ItemRegistry.registrar(() -> new ArbalestItem(new Item.Settings().maxDamage(Objects.requireNonNull(CROSSBOW.getComponents().get(DataComponentTypes.MAX_DAMAGE)) * 2))).group(ItemGroups.COMBAT).register("arbalest");
-	CompoundBowItem COMPOUND_BOW = ItemRegistry.registrar(() -> new CompoundBowItem(new Item.Settings().maxDamage(Objects.requireNonNull(BOW.getComponents().get(DataComponentTypes.MAX_DAMAGE)) * 5))).group(ItemGroups.COMBAT).register("compound_bow");
-	ZhugeRepeatingCrossbowItem ZHUGE_REPEATING_CROSSBOW = ItemRegistry.registrar(() -> new ZhugeRepeatingCrossbowItem(new Item.Settings().maxDamage(Objects.requireNonNull(BOW.getComponents().get(DataComponentTypes.MAX_DAMAGE)) * 3).fireproof())).group(ItemGroups.COMBAT).register("zhuge_repeating_crossbow");
-	MarksCrossbowItem MARKS_CROSSBOW = ItemRegistry.registrar(() -> new MarksCrossbowItem(new Item.Settings().maxDamage(Objects.requireNonNull(BOW.getComponents().get(DataComponentTypes.MAX_DAMAGE)) * 3).fireproof())).group(ItemGroups.COMBAT).register("marks_crossbow");
+	SlingshotItem SLINGSHOT = ItemRegistry.registrar(() -> new SlingshotItem(new Item.Settings().maxDamage(SlingshotItem.MAX_DAMAGE))).group(ItemGroups.COMBAT).register("slingshot");
+	RecurveBowItem RECURVE_BOW = ItemRegistry.registrar(() -> new RecurveBowItem(new Item.Settings().maxDamage(RecurveBowItem.MAX_DAMAGE))).group(ItemGroups.COMBAT).register("recurve_bow");
+	ArbalestItem ARBALEST = ItemRegistry.registrar(() -> new ArbalestItem(new Item.Settings().maxDamage(ArbalestItem.MAX_DAMAGE))).group(ItemGroups.COMBAT).register("arbalest");
+	CompoundBowItem COMPOUND_BOW = ItemRegistry.registrar(() -> new CompoundBowItem(new Item.Settings().maxDamage(CompoundBowItem.MAX_DAMAGE))).group(ItemGroups.COMBAT).register("compound_bow");
+	ZhugeRepeatingCrossbowItem ZHUGE_REPEATING_CROSSBOW = ItemRegistry.registrar(() -> new ZhugeRepeatingCrossbowItem(new Item.Settings().maxDamage(ZhugeRepeatingCrossbowItem.MAX_DAMAGE).fireproof())).group(ItemGroups.COMBAT).register("zhuge_repeating_crossbow");
+	MarksCrossbowItem MARKS_CROSSBOW = ItemRegistry.registrar(() -> new MarksCrossbowItem(new Item.Settings().maxDamage(MarksCrossbowItem.MAX_DAMAGE).fireproof())).group(ItemGroups.COMBAT).register("marks_crossbow");
 	BlockItem COPPER_FOR_SMELTING_INGOT_BLOCK = ItemRegistry.registrar(() -> new BlockItem(Blocks.COPPER_FOR_SMELTING_INGOT_BLOCK, new Item.Settings())).group(ItemGroups.BUILDING_BLOCKS).register("copper_for_smelting_ingot_block");
 	BlockItem CUFE_ALLOY_BLOCK = ItemRegistry.registrar(() -> new BlockItem(Blocks.CUFE_ALLOY_BLOCK, new Item.Settings())).group(ItemGroups.BUILDING_BLOCKS).register("cufe_alloy_block");
 	BlockItem AUCU_ALLOY_BLOCK = ItemRegistry.registrar(() -> new BlockItem(Blocks.AUCU_ALLOY_BLOCK, new Item.Settings())).group(ItemGroups.BUILDING_BLOCKS).register("aucu_alloy_block");
