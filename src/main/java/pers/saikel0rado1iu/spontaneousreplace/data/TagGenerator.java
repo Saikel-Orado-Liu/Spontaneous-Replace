@@ -26,8 +26,10 @@ package pers.saikel0rado1iu.spontaneousreplace.data;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.registry.tag.ItemTags;
 import pers.saikel0rado1iu.spontaneousreplace.block.Blocks;
 import pers.saikel0rado1iu.spontaneousreplace.item.Items;
@@ -81,6 +83,17 @@ interface TagGenerator {
 			getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(Blocks.COPPER_FOR_SMELTING_INGOT_BLOCK, Blocks.REFINED_COPPER_BLOCK, Blocks.CUFE_ALLOY_BLOCK, Blocks.CUFE_BLOCK);
 			getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL).add(Blocks.AUCU_ALLOY_BLOCK, Blocks.AUCU_BLOCK, Blocks.PIG_IRON_BLOCK, Blocks.STEEL_BLOCK);
 			getOrCreateTagBuilder(BlockTags.BEACON_BASE_BLOCKS).add(Blocks.CUFE_BLOCK, Blocks.AUCU_BLOCK, Blocks.STEEL_BLOCK);
+		}
+	}
+	
+	final class DamageType extends FabricTagProvider<net.minecraft.entity.damage.DamageType> {
+		DamageType(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+			super(output, RegistryKeys.DAMAGE_TYPE, completableFuture);
+		}
+		
+		@Override
+		protected void configure(RegistryWrapper.WrapperLookup arg) {
+			getOrCreateTagBuilder(DamageTypeTags.BYPASSES_COOLDOWN).addTag(DamageTypeTags.IS_PROJECTILE);
 		}
 	}
 }

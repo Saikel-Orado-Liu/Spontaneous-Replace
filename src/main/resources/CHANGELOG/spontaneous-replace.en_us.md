@@ -1,5 +1,9 @@
 ## 1.0.1+bf+1.20.6——2024/11/09
 
+### Change:
+
+- Added the tag 'is_projectile' to 'bypasses_cooldown' to ensure arrows fired from rapid-fire crossbows are not affected by PHDI.
+
 ### Fixes:
 
 - Fixed the issue where the 'Marks-Crossbow' allowed slow movement while reloading.

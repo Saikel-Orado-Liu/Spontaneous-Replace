@@ -58,6 +58,7 @@ public final class DataGen implements DataGenerator {
 		data.addProvider(LootTableGenerator.Block::new);
 		data.addProvider(TagGenerator.Item::new);
 		data.addProvider(TagGenerator.Block::new);
+		data.addProvider(TagGenerator.DamageType::new);
 		FabricDataGenerator.Pack resource = resourcePack.get();
 		resource.addProvider(LanguageGenerator.EnUs::new);
 		resource.addProvider(LanguageGenerator.ZhCn::new);
