@@ -25,12 +25,16 @@
 package pers.saikel0rado1iu.spontaneousreplace.item;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ProjectileItem;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import pers.saikel0rado1iu.spontaneousreplace.entity.projectile.StoneballEntity;
 import pers.saikel0rado1iu.spontaneousreplace.sound.SoundEvents;
@@ -42,8 +46,8 @@ import pers.saikel0rado1iu.spontaneousreplace.sound.SoundEvents;
  * @author <a href="https://github.com/Saikel-Orado-Liu"><img alt="author" src="https://avatars.githubusercontent.com/u/88531138?s=64&v=4"></a>
  * @since 1.0.0
  */
-public class StoneballItem extends Item {
-	public StoneballItem(Settings settings) {
+public class StoneballItem extends Item implements ProjectileItem {
+	public StoneballItem(Item.Settings settings) {
 		super(settings);
 	}
 	
@@ -65,5 +69,10 @@ public class StoneballItem extends Item {
 		if (!user.getAbilities().creativeMode) itemStack.decrement(1);
 		
 		return TypedActionResult.success(itemStack, world.isClient);
+	}
+	
+	@Override
+	public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
+		return new StoneballEntity(world, pos.getX(), pos.getY(), pos.getZ());
 	}
 }

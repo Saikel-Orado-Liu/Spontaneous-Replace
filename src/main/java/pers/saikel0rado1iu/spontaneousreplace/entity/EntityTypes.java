@@ -44,11 +44,17 @@ import pers.saikel0rado1iu.spontaneousreplace.item.Items;
  */
 public interface EntityTypes extends EntityTypeRegistry {
 	EntityType<StoneballEntity> STONEBALL = EntityTypeRegistry.registrar(() -> EntityType.Builder.<StoneballEntity>create((StoneballEntity::new), SpawnGroup.MISC)
-					.dimensions(EntityUtil.PROJECTILE_BOX, EntityUtil.PROJECTILE_BOX).maxTrackingRange(EntityUtil.PROJECTILE_RANGE).build())
-			// .other(entityType -> DispenserBlock.registerBehavior(Items.STONEBALL, new ProjectileDispenserBehavior(Items.STONEBALL)))
+					.dimensions(EntityUtil.PROJECTILE_BOX, EntityUtil.PROJECTILE_BOX)
+					.maxTrackingRange(EntityUtil.PROJECTILE_MAX_TRACKING_RANGE)
+					.trackingTickInterval(EntityUtil.PROJECTILE_TRACKING_TICK_INTERVAL)
+					.build())
+			.other(entityType -> DispenserBlock.registerBehavior(Items.STONEBALL, new ProjectileDispenserBehavior(Items.STONEBALL)))
 			.register("stoneball");
 	EntityType<SteelArrowEntity> STEEL_ARROW = EntityTypeRegistry.registrar(() -> EntityType.Builder.<SteelArrowEntity>create(SteelArrowEntity::new, SpawnGroup.MISC)
-					.dimensions(EntityUtil.PROJECTILE_BOX * 1.25F, EntityUtil.PROJECTILE_BOX * 1.25F).maxTrackingRange(EntityUtil.PROJECTILE_RANGE * 10).build())
+					.dimensions(EntityUtil.PROJECTILE_BOX * 1.25F, EntityUtil.PROJECTILE_BOX * 1.25F)
+					.maxTrackingRange(EntityUtil.PROJECTILE_MAX_TRACKING_RANGE * 10)
+					.trackingTickInterval(EntityUtil.PROJECTILE_TRACKING_TICK_INTERVAL)
+					.build())
 			.other(entityType -> DispenserBlock.registerBehavior(Items.STEEL_ARROW, new ProjectileDispenserBehavior(Items.STEEL_ARROW)))
 			.register("steel_arrow");
 }
