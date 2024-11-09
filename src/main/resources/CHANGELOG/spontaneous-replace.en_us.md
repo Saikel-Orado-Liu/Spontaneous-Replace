@@ -1,3 +1,10 @@
+## 1.0.1+bf+1.20.6——2024/11/09
+
+### Fixes:
+
+- Fixed the issue where the 'Marks-Crossbow' allowed slow movement while reloading.
+- Fixed the issue where alloy equipment and alloy tools could not be enchanted.
+
 ## 1.0.0+bu+1.20.4——2024/10/20
 
 ### Change:
