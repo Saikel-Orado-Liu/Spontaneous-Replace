@@ -38,7 +38,10 @@ import pers.saikel0rado1iu.silk.api.ropestick.component.type.AdjustFovWhileUseCo
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.RangedWeaponComponent;
 import pers.saikel0rado1iu.silk.api.ropestick.ranged.BowLikeItem;
 
+import java.util.Objects;
 import java.util.Optional;
+
+import static net.minecraft.item.Items.BOW;
 
 /**
  * <h2 style="color:FFC800">复合弓</h2>
@@ -48,6 +51,8 @@ import java.util.Optional;
  * @since 1.0.0
  */
 public class CompoundBowItem extends BowLikeItem {
+	public static final int MAX_DAMAGE = Objects.requireNonNull(BOW.getComponents().get(net.minecraft.component.DataComponentTypes.MAX_DAMAGE)) * 5;
+	
 	/**
 	 * @param settings 物品设置
 	 */

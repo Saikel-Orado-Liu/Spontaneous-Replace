@@ -43,7 +43,10 @@ import pers.saikel0rado1iu.silk.api.ropestick.component.type.RangedWeaponCompone
 import pers.saikel0rado1iu.silk.api.ropestick.ranged.CrossbowLikeItem;
 import pers.saikel0rado1iu.spontaneousreplace.sound.SoundEvents;
 
+import java.util.Objects;
 import java.util.Optional;
+
+import static net.minecraft.item.Items.CROSSBOW;
 
 /**
  * <h2 style="color:FFC800">劲弩物品</h2>
@@ -53,6 +56,8 @@ import java.util.Optional;
  * @since 1.0.0
  */
 public class ArbalestItem extends CrossbowLikeItem {
+	public static final int MAX_DAMAGE = Objects.requireNonNull(CROSSBOW.getComponents().get(net.minecraft.component.DataComponentTypes.MAX_DAMAGE)) * 2;
+	
 	/**
 	 * @param settings 物品设置
 	 */

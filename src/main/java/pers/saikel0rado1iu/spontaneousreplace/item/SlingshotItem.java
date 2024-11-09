@@ -46,6 +46,7 @@ import pers.saikel0rado1iu.silk.api.ropestick.ranged.BowLikeItem;
 import pers.saikel0rado1iu.spontaneousreplace.entity.projectile.StoneballEntity;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static net.minecraft.item.Items.*;
@@ -58,6 +59,8 @@ import static net.minecraft.item.Items.*;
  * @since 1.0.0
  */
 public class SlingshotItem extends BowLikeItem {
+	public static final int MAX_DAMAGE = Objects.requireNonNull(BOW.getComponents().get(net.minecraft.component.DataComponentTypes.MAX_DAMAGE)) / 2;
+	
 	/**
 	 * @param settings 物品设置
 	 */

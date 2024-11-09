@@ -40,7 +40,10 @@ import pers.saikel0rado1iu.silk.api.ropestick.component.type.ModifyMoveWhileUseC
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.RangedWeaponComponent;
 import pers.saikel0rado1iu.silk.api.ropestick.ranged.BowLikeItem;
 
+import java.util.Objects;
 import java.util.Optional;
+
+import static net.minecraft.item.Items.BOW;
 
 /**
  * <h2 style="color:FFC800">反曲弓物品</h2>
@@ -50,6 +53,8 @@ import java.util.Optional;
  * @since 1.0.0
  */
 public class RecurveBowItem extends BowLikeItem {
+	public static final int MAX_DAMAGE = Objects.requireNonNull(BOW.getComponents().get(net.minecraft.component.DataComponentTypes.MAX_DAMAGE)) * 2;
+	
 	/**
 	 * @param settings 物品设置
 	 */
