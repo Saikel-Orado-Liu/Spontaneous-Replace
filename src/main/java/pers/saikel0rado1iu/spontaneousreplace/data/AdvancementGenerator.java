@@ -38,6 +38,7 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.data.server.recipe.RecipeProvider;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.condition.EntityPropertiesLootCondition;
@@ -49,6 +50,8 @@ import net.minecraft.predicate.entity.DistancePredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.entity.LootContextPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.registry.RegistryEntryLookup;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.RangedKilledEntityCriterion;
@@ -74,7 +77,7 @@ import static net.minecraft.item.Items.*;
  */
 final class AdvancementGenerator extends FabricAdvancementProvider {
 	static final AdvancementEntry ROOT = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "root")
-			.display(CRAFTING_TABLE, new Identifier("textures/block/andesite.png"), AdvancementFrame.TASK, false, false, false)
+			.display(CRAFTING_TABLE, Identifier.of("textures/block/andesite.png"), AdvancementFrame.TASK, false, false, false)
 			.criterion(RecipeProvider.hasItem(CRAFTING_TABLE), InventoryChangedCriterion.Conditions.items(CRAFTING_TABLE))
 			.build();
 	public static final AdvancementEntry HAVE_A_NEW_RANGED = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_a_new_ranged")
@@ -116,32 +119,29 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 			.display(PotionContentsComponent.createStack(SPLASH_POTION, Potions.HEALING), null, AdvancementFrame.TASK, true, true, false)
 			.criterion("use_slingshot", ShotProjectileCriterion.Conditions.ranged(Items.SLINGSHOT).projectile(EntityPredicate.Builder.create().type(EntityType.POTION).build()).build().create())
 			.build();
-	public static final AdvancementEntry HAVE_A_JUGER_REPEATING_CROSSBOW = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_a_juger_repeating_crossbow")
+	public static final AdvancementEntry HAVE_A_ZHUGE_REPEATING_CROSSBOW = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_a_juger_repeating_crossbow")
 			.parent(HAVE_A_NEW_RANGED)
 			.display(Items.ZHUGE_REPEATING_CROSSBOW, null, AdvancementFrame.GOAL, true, true, false)
 			.criterion(RecipeProvider.hasItem(Items.ZHUGE_REPEATING_CROSSBOW), InventoryChangedCriterion.Conditions.items(Items.ZHUGE_REPEATING_CROSSBOW))
 			.build();
-	public static final AdvancementEntry HAVE_LEGEND_JUGER_REPEATING_CROSSBOW = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_legend_juger_repeating_crossbow")
-			.parent(HAVE_A_JUGER_REPEATING_CROSSBOW)
+	public static final AdvancementEntry __HAVE_LEGEND_ZHUGE_REPEATING_CROSSBOW = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_legend_juger_repeating_crossbow")
+			.parent(HAVE_A_ZHUGE_REPEATING_CROSSBOW)
 			.display(Items.ZHUGE_REPEATING_CROSSBOW, null, AdvancementFrame.CHALLENGE, true, true, true)
 			.criterion(RecipeProvider.hasItem(Items.ZHUGE_REPEATING_CROSSBOW), InventoryChangedCriterion.Conditions.items(ItemPredicate.Builder.create().items(Items.ZHUGE_REPEATING_CROSSBOW)
 					.component(ComponentPredicate.builder().add(DataComponentTypes.ENCHANTMENTS, Suppliers.memoize(() -> {
 						ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
-						builder.add(Enchantments.MULTISHOT, 1);
-						builder.add(Enchantments.QUICK_CHARGE, 3);
-						builder.add(Enchantments.UNBREAKING, 5);
 						return builder.build();
 					}).get()).build()).build()))
 			.rewards(AdvancementRewards.Builder.experience(100))
 			.build();
-	public static final AdvancementEntry USE_JUGER_REPEATING_CROSSBOW_SHOT_1000_ARROWS = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "use_juger_repeating_crossbow_shot_1000_arrows")
-			.parent(HAVE_A_JUGER_REPEATING_CROSSBOW)
+	public static final AdvancementEntry USE_ZHUGE_REPEATING_CROSSBOW_SHOT_1000_ARROWS = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "use_juger_repeating_crossbow_shot_1000_arrows")
+			.parent(HAVE_A_ZHUGE_REPEATING_CROSSBOW)
 			.display(ARROW, null, AdvancementFrame.CHALLENGE, true, true, true)
 			.criterion("use_juger_repeating_crossbow_shot_1000_arrows", ShotProjectileCriterion.Conditions.ranged(Items.ZHUGE_REPEATING_CROSSBOW).amount(NumberRange.IntRange.atLeast(1000)).build().create())
 			.rewards(AdvancementRewards.Builder.experience(100))
 			.build();
-	public static final AdvancementEntry USE_JUGER_REPEATING_CROSSBOW_KILL_100_MONSTERS = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "use_juger_repeating_crossbow_kill_100_monsters")
-			.parent(HAVE_A_JUGER_REPEATING_CROSSBOW)
+	public static final AdvancementEntry USE_ZHUGE_REPEATING_CROSSBOW_KILL_100_MONSTERS = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "use_juger_repeating_crossbow_kill_100_monsters")
+			.parent(HAVE_A_ZHUGE_REPEATING_CROSSBOW)
 			.display(SKELETON_SKULL, null, AdvancementFrame.CHALLENGE, true, true, true)
 			.criterion("use_juger_repeating_crossbow_kill_100_monsters", RangedKilledEntityCriterion.Conditions.ranged(Items.ZHUGE_REPEATING_CROSSBOW)
 					.target(EntityPredicate.Builder.create().type(EntityTypeTags.MONSTERS).build()).killed(NumberRange.IntRange.atLeast(100)).build().create())
@@ -165,15 +165,12 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 			.criterion("killed_stray", OnKilledCriterion.Conditions.createEntityKilledPlayer(Optional.of(EntityPredicate.Builder.create().type(EntityType.STRAY).distance(DistancePredicate.horizontal(NumberRange.DoubleRange.exactly(100))).build())))
 			.rewards(AdvancementRewards.Builder.experience(100))
 			.build();
-	public static final AdvancementEntry HAVE_LEGEND_MARKS_CROSSBOW = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_legend_marks_crossbow")
+	public static final AdvancementEntry __HAVE_LEGEND_MARKS_CROSSBOW = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_legend_marks_crossbow")
 			.parent(HAVE_A_MARKS_CROSSBOW)
 			.display(Items.MARKS_CROSSBOW, null, AdvancementFrame.CHALLENGE, true, true, true)
 			.criterion(RecipeProvider.hasItem(Items.MARKS_CROSSBOW), InventoryChangedCriterion.Conditions.items(ItemPredicate.Builder.create().items(Items.MARKS_CROSSBOW)
 					.component(ComponentPredicate.builder().add(DataComponentTypes.ENCHANTMENTS, Suppliers.memoize(() -> {
 						ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
-						builder.add(Enchantments.PIERCING, 4);
-						builder.add(Enchantments.QUICK_CHARGE, 3);
-						builder.add(Enchantments.UNBREAKING, 5);
 						return builder.build();
 					}).get()).build()).build()))
 			.rewards(AdvancementRewards.Builder.experience(100))
@@ -320,6 +317,33 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 	
 	@Override
 	public void generateAdvancement(RegistryWrapper.WrapperLookup wrapperLookup, Consumer<AdvancementEntry> consumer) {
+		RegistryEntryLookup<Enchantment> lookup = wrapperLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+		AdvancementEntry haveLegendJugerRepeatingCrossbow = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_legend_juger_repeating_crossbow")
+				.parent(HAVE_A_ZHUGE_REPEATING_CROSSBOW)
+				.display(Items.ZHUGE_REPEATING_CROSSBOW, null, AdvancementFrame.CHALLENGE, true, true, true)
+				.criterion(RecipeProvider.hasItem(Items.ZHUGE_REPEATING_CROSSBOW), InventoryChangedCriterion.Conditions.items(ItemPredicate.Builder.create().items(Items.ZHUGE_REPEATING_CROSSBOW)
+						.component(ComponentPredicate.builder().add(DataComponentTypes.ENCHANTMENTS, Suppliers.memoize(() -> {
+							ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
+							builder.add(lookup.getOrThrow(Enchantments.MULTISHOT), 1);
+							builder.add(lookup.getOrThrow(Enchantments.QUICK_CHARGE), 3);
+							builder.add(lookup.getOrThrow(Enchantments.UNBREAKING), 5);
+							return builder.build();
+						}).get()).build()).build()))
+				.rewards(AdvancementRewards.Builder.experience(100))
+				.build();
+		AdvancementEntry haveLegendMarksCrossbow = AdvancementGenUtil.builder(SpontaneousReplace.INSTANCE, "have_legend_marks_crossbow")
+				.parent(HAVE_A_MARKS_CROSSBOW)
+				.display(Items.MARKS_CROSSBOW, null, AdvancementFrame.CHALLENGE, true, true, true)
+				.criterion(RecipeProvider.hasItem(Items.MARKS_CROSSBOW), InventoryChangedCriterion.Conditions.items(ItemPredicate.Builder.create().items(Items.MARKS_CROSSBOW)
+						.component(ComponentPredicate.builder().add(DataComponentTypes.ENCHANTMENTS, Suppliers.memoize(() -> {
+							ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
+							builder.add(lookup.getOrThrow(Enchantments.PIERCING), 4);
+							builder.add(lookup.getOrThrow(Enchantments.QUICK_CHARGE), 3);
+							builder.add(lookup.getOrThrow(Enchantments.UNBREAKING), 5);
+							return builder.build();
+						}).get()).build()).build()))
+				.rewards(AdvancementRewards.Builder.experience(100))
+				.build();
 		consumer.accept(ROOT);
 		consumer.accept(HAVE_A_NEW_METAL);
 		consumer.accept(HAVE_A_REFINED_COPPER);
@@ -335,12 +359,12 @@ final class AdvancementGenerator extends FabricAdvancementProvider {
 		consumer.accept(USE_SLINGSHOT);
 		consumer.accept(USE_SLINGSHOT_WITH_ENDER_PEARL);
 		consumer.accept(USE_SLINGSHOT_WITH_POTION);
-		consumer.accept(HAVE_A_JUGER_REPEATING_CROSSBOW);
-		consumer.accept(HAVE_LEGEND_JUGER_REPEATING_CROSSBOW);
-		consumer.accept(USE_JUGER_REPEATING_CROSSBOW_SHOT_1000_ARROWS);
-		consumer.accept(USE_JUGER_REPEATING_CROSSBOW_KILL_100_MONSTERS);
+		consumer.accept(HAVE_A_ZHUGE_REPEATING_CROSSBOW);
+		consumer.accept(haveLegendJugerRepeatingCrossbow);
+		consumer.accept(USE_ZHUGE_REPEATING_CROSSBOW_SHOT_1000_ARROWS);
+		consumer.accept(USE_ZHUGE_REPEATING_CROSSBOW_KILL_100_MONSTERS);
 		consumer.accept(HAVE_A_MARKS_CROSSBOW);
-		consumer.accept(HAVE_LEGEND_MARKS_CROSSBOW);
+		consumer.accept(haveLegendMarksCrossbow);
 		consumer.accept(MARKSMAN);
 		consumer.accept(SNIPING);
 		consumer.accept(HAVE_ALL_BASIC_RANGED);

@@ -26,17 +26,18 @@ package pers.saikel0rado1iu.spontaneousreplace.item;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.component.ComponentMap;
+import net.minecraft.component.EnchantmentEffectComponentTypes;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.UseAction;
 import pers.saikel0rado1iu.silk.api.base.common.util.TickUtil;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.Criteria;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.RangedKilledEntityCriterion;
-import pers.saikel0rado1iu.silk.api.ropestick.component.DataComponentTypes;
+import pers.saikel0rado1iu.silk.api.ropestick.component.ComponentTypes;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.*;
 import pers.saikel0rado1iu.silk.api.ropestick.ranged.BoltActionFirearmItem;
 import pers.saikel0rado1iu.spontaneousreplace.sound.SoundEvents;
@@ -54,13 +55,21 @@ import static net.minecraft.item.Items.CROSSBOW;
  * @since 1.0.0
  */
 public class MarksCrossbowItem extends BoltActionFirearmItem {
+	public static final LoadingSounds QUICK_LOADING_SOUNDS = new LoadingSounds(
+			Optional.of(SoundEvents.MARKS_CROSSBOW_QUICK_CHARGE_1),
+			Optional.of(SoundEvents.MARKS_CROSSBOW_QUICK_CHARGE_2),
+			Optional.of(SoundEvents.MARKS_CROSSBOW_QUICK_CHARGE_3));
+	public static final LoadingSounds LOADING_SOUNDS = new LoadingSounds(
+			Optional.of(SoundEvents.MARKS_CROSSBOW_LOADING_START),
+			Optional.of(SoundEvents.MARKS_CROSSBOW_LOADING_MIDDLE),
+			Optional.of(SoundEvents.MARKS_CROSSBOW_LOADING_END));
 	public static final int MAX_DAMAGE = Objects.requireNonNull(CROSSBOW.getComponents().get(net.minecraft.component.DataComponentTypes.MAX_DAMAGE)) * 3;
 	
 	/**
 	 * @param settings 物品设置
 	 */
 	public MarksCrossbowItem(Settings settings) {
-		super(settings.component(DataComponentTypes.ENCHANTMENT_TRAITS, EnchantmentTraitsComponent.of(
+		super(settings.component(ComponentTypes.ENCHANTMENT_TRAITS, EnchantmentTraitsComponent.of(
 				Enchantments.PIERCING,
 				Enchantments.QUICK_CHARGE,
 				Enchantments.UNBREAKING,
@@ -72,14 +81,14 @@ public class MarksCrossbowItem extends BoltActionFirearmItem {
 	public ComponentMap dynamicComponents(ItemStack stack) {
 		return ComponentMap.builder()
 				.addAll(super.dynamicComponents(stack))
-				.add(DataComponentTypes.ADJUST_FOV_WHILE_HOLD, AdjustFovWhileHoldComponent
+				.add(ComponentTypes.ADJUST_FOV_WHILE_HOLD, AdjustFovWhileHoldComponent
 						.create(true,
 								Optional.of(AdjustFovData.SPYGLASS_SCOPE),
 								false,
 								1.9F)
 						.setCanAdjust(CrossbowItem.isCharged(stack)))
-				.add(DataComponentTypes.MODIFY_MOVE_WHILE_USE, ModifyMoveWhileUseComponent.of(0))
-				.add(DataComponentTypes.MODIFY_MOVE_WHILE_HOLD, ModifyMoveWhileHoldComponent
+				.add(ComponentTypes.MODIFY_MOVE_WHILE_USE, ModifyMoveWhileUseComponent.of(0))
+				.add(ComponentTypes.MODIFY_MOVE_WHILE_HOLD, ModifyMoveWhileHoldComponent
 						.of(0)
 						.setModify(CrossbowItem.isCharged(stack)))
 				.build();
@@ -99,26 +108,8 @@ public class MarksCrossbowItem extends BoltActionFirearmItem {
 	}
 	
 	@Override
-	protected SoundEvent getQuickChargeSound(int stage) {
-		if (stage == 1) return SoundEvents.MARKS_CROSSBOW_QUICK_CHARGE_1;
-		else if (stage == 2) return SoundEvents.MARKS_CROSSBOW_QUICK_CHARGE_2;
-		else if (stage >= 3) return SoundEvents.MARKS_CROSSBOW_QUICK_CHARGE_3;
-		else return SoundEvents.MARKS_CROSSBOW_LOADING_START;
-	}
-	
-	@Override
-	public SoundEvent loadingSound() {
-		return SoundEvents.MARKS_CROSSBOW_LOADING_MIDDLE;
-	}
-	
-	@Override
-	public SoundEvent loadedSound() {
-		return SoundEvents.MARKS_CROSSBOW_LOADING_END;
-	}
-	
-	@Override
-	public SoundEvent shootSound() {
-		return SoundEvents.MARKS_CROSSBOW_SHOOT;
+	public StateSounds stateSounds(ItemStack stack) {
+		return new StateSounds(EnchantmentHelper.hasAnyEnchantmentsWith(stack, EnchantmentEffectComponentTypes.CROSSBOW_CHARGING_SOUNDS) ? QUICK_LOADING_SOUNDS : LOADING_SOUNDS, SoundEvents.MARKS_CROSSBOW_SHOOT);
 	}
 	
 	@Override

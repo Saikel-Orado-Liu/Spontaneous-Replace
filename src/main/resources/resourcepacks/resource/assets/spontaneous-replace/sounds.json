@@ -107,29 +107,29 @@
 			"spontaneous-replace:arbalest/quick_charge_3/3"
 		]
 	},
-	"juger_repeating_crossbow.loading.start": {
-		"subtitle": "subtitles.spontaneous-replace.juger_repeating_crossbow.loading.start",
+	"zhuge_repeating_crossbow.loading.start": {
+		"subtitle": "subtitles.spontaneous-replace.zhuge_repeating_crossbow.loading.start",
 		"sounds": [
-			"spontaneous-replace:juger_repeating_crossbow/loading_start"
+			"spontaneous-replace:zhuge_repeating_crossbow/loading_start"
 		]
 	},
-	"juger_repeating_crossbow.loading.middle": {
+	"zhuge_repeating_crossbow.loading.middle": {
 		"sounds": [
-			"spontaneous-replace:juger_repeating_crossbow/loading_middle"
+			"spontaneous-replace:zhuge_repeating_crossbow/loading_middle"
 		]
 	},
-	"juger_repeating_crossbow.loading.end": {
-		"subtitle": "subtitles.spontaneous-replace.juger_repeating_crossbow.loading.end",
+	"zhuge_repeating_crossbow.loading.end": {
+		"subtitle": "subtitles.spontaneous-replace.zhuge_repeating_crossbow.loading.end",
 		"sounds": [
-			"spontaneous-replace:juger_repeating_crossbow/loading_end"
+			"spontaneous-replace:zhuge_repeating_crossbow/loading_end"
 		]
 	},
-	"juger_repeating_crossbow.shoot": {
-		"subtitle": "subtitles.spontaneous-replace.juger_repeating_crossbow.shoot",
+	"zhuge_repeating_crossbow.shoot": {
+		"subtitle": "subtitles.spontaneous-replace.zhuge_repeating_crossbow.shoot",
 		"sounds": [
-			"spontaneous-replace:juger_repeating_crossbow/shoot/1",
-			"spontaneous-replace:juger_repeating_crossbow/shoot/2",
-			"spontaneous-replace:juger_repeating_crossbow/shoot/3"
+			"spontaneous-replace:zhuge_repeating_crossbow/shoot/1",
+			"spontaneous-replace:zhuge_repeating_crossbow/shoot/2",
+			"spontaneous-replace:zhuge_repeating_crossbow/shoot/3"
 		]
 	},
 	"marks_crossbow.loading.start": {

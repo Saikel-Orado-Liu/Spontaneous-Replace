@@ -93,7 +93,7 @@ interface TagGenerator {
 		
 		@Override
 		protected void configure(RegistryWrapper.WrapperLookup arg) {
-			getOrCreateTagBuilder(DamageTypeTags.BYPASSES_COOLDOWN).addTag(DamageTypeTags.IS_PROJECTILE);
+			getOrCreateTagBuilder(DamageTypeTags.BYPASSES_COOLDOWN).addOptionalTag(DamageTypeTags.IS_PROJECTILE);
 		}
 	}
 }

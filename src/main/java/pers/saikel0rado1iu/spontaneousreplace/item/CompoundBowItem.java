@@ -32,7 +32,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import pers.saikel0rado1iu.silk.api.base.common.util.TickUtil;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.Criteria;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.RangedKilledEntityCriterion;
-import pers.saikel0rado1iu.silk.api.ropestick.component.DataComponentTypes;
+import pers.saikel0rado1iu.silk.api.ropestick.component.ComponentTypes;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.AdjustFovData;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.AdjustFovWhileUseComponent;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.RangedWeaponComponent;
@@ -57,7 +57,7 @@ public class CompoundBowItem extends BowLikeItem {
 	 * @param settings 物品设置
 	 */
 	public CompoundBowItem(Settings settings) {
-		super(settings.component(DataComponentTypes.ADJUST_FOV_WHILE_USE, AdjustFovWhileUseComponent.create(false, Optional.of(AdjustFovData.SPYGLASS_SCOPE), false, 1.5F)));
+		super(settings.component(ComponentTypes.ADJUST_FOV_WHILE_USE, AdjustFovWhileUseComponent.create(false, Optional.of(AdjustFovData.SPYGLASS_SCOPE), false, 1.5F)));
 	}
 	
 	@Override

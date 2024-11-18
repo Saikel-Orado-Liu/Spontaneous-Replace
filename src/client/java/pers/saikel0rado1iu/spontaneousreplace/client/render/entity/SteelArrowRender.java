@@ -86,7 +86,7 @@ public class SteelArrowRender extends EntityRenderer<SteelArrowEntity> {
 	}
 	
 	public void vertex(MatrixStack.Entry matrix, VertexConsumer vertexConsumer, int x, int y, int z, float u, float v, int normalX, int normalZ, int normalY, int light) {
-		vertexConsumer.vertex(matrix, (float) x, (float) y, (float) z).color(255, 255, 255, 255).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(matrix, (float) normalX, (float) normalY, (float) normalZ).next();
+		vertexConsumer.vertex(matrix, (float) x, (float) y, (float) z).color(255, 255, 255, 255).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(matrix, (float) normalX, (float) normalY, (float) normalZ);
 	}
 	
 	@Override

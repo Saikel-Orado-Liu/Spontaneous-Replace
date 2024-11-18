@@ -25,15 +25,13 @@
 package pers.saikel0rado1iu.spontaneousreplace.item;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.Criteria;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.RangedKilledEntityCriterion;
-import pers.saikel0rado1iu.silk.api.ropestick.component.DataComponentTypes;
+import pers.saikel0rado1iu.silk.api.ropestick.component.ComponentTypes;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.AdjustFovData;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.AdjustFovWhileUseComponent;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.ModifyMoveWhileUseComponent;
@@ -60,18 +58,17 @@ public class RecurveBowItem extends BowLikeItem {
 	 */
 	public RecurveBowItem(Settings settings) {
 		super(settings
-				.component(DataComponentTypes.ADJUST_FOV_WHILE_USE, AdjustFovWhileUseComponent.create(false, Optional.empty(), false, AdjustFovData.BOW_FOV_SCALING * 2 - 1))
-				.component(DataComponentTypes.MODIFY_MOVE_WHILE_USE, ModifyMoveWhileUseComponent.of(0.5F)));
+				.component(ComponentTypes.ADJUST_FOV_WHILE_USE, AdjustFovWhileUseComponent.create(false, Optional.empty(), false, AdjustFovData.BOW_FOV_SCALING * 2 - 1))
+				.component(ComponentTypes.MODIFY_MOVE_WHILE_USE, ModifyMoveWhileUseComponent.of(0.5F)));
 	}
 	
 	@Override
 	public RangedWeaponComponent rangedWeapon(Optional<ItemStack> stack) {
-		int pull = stack.filter(value -> EnchantmentHelper.getLevel(Enchantments.QUICK_CHARGE, value) > 0).map(value -> (int) (RangedWeaponComponent.BOW_MAX_PULL_TICKS * 0.25)).orElseGet(() -> (int) (RangedWeaponComponent.BOW_MAX_PULL_TICKS * 0.75));
 		return RangedWeaponComponent.builder()
 				.maxSpeed(4)
 				.maxDamage(RangedWeaponComponent.BOW_MAX_DAMAGE * 1.5F)
 				.maxUseTicks(RangedWeaponComponent.BOW_MAX_USE_TICKS)
-				.maxPullTicks(pull)
+				.maxPullTicks((int) (RangedWeaponComponent.BOW_MAX_PULL_TICKS * 0.75))
 				.firingError(RangedWeaponComponent.DEFAULT_FIRING_ERROR)
 				.defaultProjectile(Items.ARROW.getDefaultStack())
 				.launchableProjectiles(ImmutableList.of(

@@ -26,18 +26,17 @@ package pers.saikel0rado1iu.spontaneousreplace.item;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.component.ComponentMap;
+import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
 import pers.saikel0rado1iu.silk.api.base.common.util.TickUtil;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.Criteria;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.RangedKilledEntityCriterion;
-import pers.saikel0rado1iu.silk.api.ropestick.component.DataComponentTypes;
+import pers.saikel0rado1iu.silk.api.ropestick.component.ComponentTypes;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.AdjustFovWhileHoldComponent;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.RangedWeaponComponent;
 import pers.saikel0rado1iu.silk.api.ropestick.ranged.CrossbowLikeItem;
@@ -56,6 +55,14 @@ import static net.minecraft.item.Items.CROSSBOW;
  * @since 1.0.0
  */
 public class ArbalestItem extends CrossbowLikeItem {
+	public static final LoadingSounds QUICK_LOADING_SOUNDS = new LoadingSounds(
+			Optional.of(SoundEvents.ARBALEST_QUICK_CHARGE_1),
+			Optional.of(SoundEvents.ARBALEST_QUICK_CHARGE_2),
+			Optional.of(SoundEvents.ARBALEST_QUICK_CHARGE_3));
+	public static final LoadingSounds LOADING_SOUNDS = new LoadingSounds(
+			Optional.of(SoundEvents.ARBALEST_LOADING_START),
+			Optional.of(SoundEvents.ARBALEST_LOADING_MIDDLE),
+			Optional.of(SoundEvents.ARBALEST_LOADING_END));
 	public static final int MAX_DAMAGE = Objects.requireNonNull(CROSSBOW.getComponents().get(net.minecraft.component.DataComponentTypes.MAX_DAMAGE)) * 2;
 	
 	/**
@@ -69,7 +76,7 @@ public class ArbalestItem extends CrossbowLikeItem {
 	public ComponentMap dynamicComponents(ItemStack stack) {
 		return ComponentMap.builder()
 				.addAll(super.dynamicComponents(stack))
-				.add(DataComponentTypes.ADJUST_FOV_WHILE_HOLD, AdjustFovWhileHoldComponent
+				.add(ComponentTypes.ADJUST_FOV_WHILE_HOLD, AdjustFovWhileHoldComponent
 						.create(false,
 								Optional.empty(),
 								false,
@@ -88,32 +95,12 @@ public class ArbalestItem extends CrossbowLikeItem {
 	@Override
 	public void triggerCriteria(ServerPlayerEntity serverPlayer, ItemStack ranged, ProjectileEntity projectile) {
 		RangedKilledEntityCriterion.setRangedWeapon(projectile, ranged);
-		Criteria.SHOT_PROJECTILE_CRITERION.trigger(serverPlayer, ranged, projectile, EnchantmentHelper.getLevel(Enchantments.MULTISHOT, ranged) > 0 ? 3 : 1);
+		Criteria.SHOT_PROJECTILE_CRITERION.trigger(serverPlayer, ranged, projectile, 1);
 	}
 	
 	@Override
-	protected SoundEvent getQuickChargeSound(int stage) {
-		return switch (stage) {
-			case 1 -> SoundEvents.ARBALEST_QUICK_CHARGE_1;
-			case 2 -> SoundEvents.ARBALEST_QUICK_CHARGE_2;
-			case 3 -> SoundEvents.ARBALEST_QUICK_CHARGE_3;
-			default -> SoundEvents.ARBALEST_LOADING_START;
-		};
-	}
-	
-	@Override
-	public SoundEvent loadingSound() {
-		return SoundEvents.ARBALEST_LOADING_MIDDLE;
-	}
-	
-	@Override
-	public SoundEvent loadedSound() {
-		return SoundEvents.ARBALEST_LOADING_END;
-	}
-	
-	@Override
-	public SoundEvent shootSound() {
-		return SoundEvents.ARBALEST_SHOOT;
+	public StateSounds stateSounds(ItemStack stack) {
+		return new StateSounds(EnchantmentHelper.hasAnyEnchantmentsWith(stack, EnchantmentEffectComponentTypes.CROSSBOW_CHARGING_SOUNDS) ? QUICK_LOADING_SOUNDS : LOADING_SOUNDS, SoundEvents.ARBALEST_SHOOT);
 	}
 	
 	@Override

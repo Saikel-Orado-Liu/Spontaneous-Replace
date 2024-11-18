@@ -36,7 +36,7 @@ import pers.saikel0rado1iu.spontaneousreplace.block.Blocks;
 import static net.minecraft.component.DataComponentTypes.DYED_COLOR;
 import static net.minecraft.item.Items.COAL;
 import static net.minecraft.item.Items.SNOWBALL;
-import static pers.saikel0rado1iu.silk.api.ropestick.component.DataComponentTypes.CUSTOM_ENTITY_HURT;
+import static pers.saikel0rado1iu.silk.api.ropestick.component.ComponentTypes.CUSTOM_ENTITY_HURT;
 
 /**
  * <h2 style="color:FFC800">物品集</h2>

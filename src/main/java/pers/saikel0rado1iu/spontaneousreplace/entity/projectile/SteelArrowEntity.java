@@ -30,6 +30,7 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import pers.saikel0rado1iu.silk.api.spore.projectile.FixedDamage;
 import pers.saikel0rado1iu.spontaneousreplace.entity.EntityTypes;
 import pers.saikel0rado1iu.spontaneousreplace.item.Items;
@@ -48,8 +49,12 @@ public class SteelArrowEntity extends PersistentProjectileEntity implements Fixe
 		super(entityType, world);
 	}
 	
-	public SteelArrowEntity(World world, LivingEntity owner, ItemStack stack) {
-		super(EntityTypes.STEEL_ARROW, owner, world, stack);
+	public SteelArrowEntity(World world, double x, double y, double z, ItemStack stack, @Nullable ItemStack shotFrom) {
+		super(EntityTypes.STEEL_ARROW, x, y, z, world, stack, shotFrom);
+	}
+	
+	public SteelArrowEntity(World world, LivingEntity owner, ItemStack stack, @Nullable ItemStack shotFrom) {
+		super(EntityTypes.STEEL_ARROW, owner, world, stack, shotFrom);
 	}
 	
 	@Override

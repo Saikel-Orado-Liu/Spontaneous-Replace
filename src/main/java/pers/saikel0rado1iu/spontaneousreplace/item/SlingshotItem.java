@@ -32,13 +32,14 @@ import net.minecraft.entity.projectile.thrown.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import pers.saikel0rado1iu.silk.api.base.common.util.TickUtil;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.Criteria;
 import pers.saikel0rado1iu.silk.api.generate.advancement.criterion.RangedKilledEntityCriterion;
-import pers.saikel0rado1iu.silk.api.ropestick.component.DataComponentTypes;
+import pers.saikel0rado1iu.silk.api.ropestick.component.ComponentTypes;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.EnchantmentTraitsComponent;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.ModifyMoveWhileUseComponent;
 import pers.saikel0rado1iu.silk.api.ropestick.component.type.RangedWeaponComponent;
@@ -66,8 +67,8 @@ public class SlingshotItem extends BowLikeItem {
 	 */
 	public SlingshotItem(Item.Settings settings) {
 		super(settings
-				.component(DataComponentTypes.MODIFY_MOVE_WHILE_USE, ModifyMoveWhileUseComponent.of(1))
-				.component(DataComponentTypes.ENCHANTMENT_TRAITS, EnchantmentTraitsComponent.of(
+				.component(ComponentTypes.MODIFY_MOVE_WHILE_USE, ModifyMoveWhileUseComponent.of(1))
+				.component(ComponentTypes.ENCHANTMENT_TRAITS, EnchantmentTraitsComponent.of(
 						Enchantments.INFINITY,
 						Enchantments.POWER,
 						Enchantments.PUNCH,
@@ -93,7 +94,7 @@ public class SlingshotItem extends BowLikeItem {
 	}
 	
 	@Override
-	protected void shootAll(World world, LivingEntity shooter, Hand hand, ItemStack stack, List<ItemStack> projectiles, float speed, float divergence, boolean critical, @Nullable LivingEntity target) {
+	protected void shootAll(ServerWorld world, LivingEntity shooter, Hand hand, ItemStack stack, List<ItemStack> projectiles, float speed, float divergence, boolean critical, @Nullable LivingEntity target) {
 		tempStack = stack;
 		float baseYaw = projectiles.size() == 1 ? 0.0F : 20.0F / (projectiles.size() - 1);
 		float halfBaseYaw = (projectiles.size() - 1) % 2 * baseYaw / 2.0F;
